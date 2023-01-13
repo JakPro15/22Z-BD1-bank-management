@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="724E27F7-DAD3-4C02-5190-27B3699183D1" name="Accounts">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:50:07 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Account_ID" id="26D0BAD4-5FAF-BB35-EC0C-7F3100ED8543">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:50:15 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Account_number" id="FAD065CC-1AB3-178D-4DAC-CB8F652D91A3">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:50:26 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>26 CHAR</dataTypeSize>
+<ownDataTypeParameters>26 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Type" id="FC8E1288-6149-788B-7B7B-439033823509">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:52:42 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Creation_date" id="F74E4227-A179-A5A8-2465-DB1A5373E0E1">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:53:01 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Closing_date" id="B8876195-FD98-DEDC-D0FA-423A9A3A54F7">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:58:31 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Transaction_limit" id="06EE7798-1210-7C0F-CE3F-A172D1AAE564">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:55:26 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="79D75237-1709-598F-BDCB-80F471D2CDDD" name="Accounts PK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:50:23 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>26D0BAD4-5FAF-BB35-EC0C-7F3100ED8543</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="35FA3318-B880-D594-1DA0-B8BA2E8C21CD">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-13 19:22:35 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>
