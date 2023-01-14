@@ -4,7 +4,7 @@
 <createdTime>2023-01-13 19:50:07 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,24 +16,12 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Account_ID" id="26D0BAD4-5FAF-BB35-EC0C-7F3100ED8543">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 19:50:15 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Account_number" id="FAD065CC-1AB3-178D-4DAC-CB8F652D91A3">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 19:50:26 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -46,7 +34,7 @@
 <createdTime>2023-01-13 19:52:42 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -59,7 +47,7 @@
 <createdTime>2023-01-13 19:53:01 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -71,7 +59,7 @@
 <createdTime>2023-01-13 19:58:31 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -84,7 +72,7 @@
 <createdTime>2023-01-13 19:55:26 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -96,16 +84,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="79D75237-1709-598F-BDCB-80F471D2CDDD" name="Accounts PK">
+<identifier id="C54299AD-1CA6-37E1-29DE-7E2F6CF74B52" name="Accounts UK">
 <createdBy>pleba</createdBy>
-<createdTime>2023-01-13 19:50:23 UTC</createdTime>
+<createdTime>2023-01-14 11:50:45 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
-<pk>true</pk>
+<newElementsIDs>FAD065CC-1AB3-178D-4DAC-CB8F652D91A3</newElementsIDs>
 <usedAttributes>
-<attributeRef>26D0BAD4-5FAF-BB35-EC0C-7F3100ED8543</attributeRef>
+<attributeRef>FAD065CC-1AB3-178D-4DAC-CB8F652D91A3</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Account_credits" directorySegmentName="seg_0" id="DFB329C9-D81F-8C87-00A0-4F97963C7A9F">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Account_Loans" directorySegmentName="seg_0" id="DFB329C9-D81F-8C87-00A0-4F97963C7A9F">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:53:23 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
@@ -7,7 +7,6 @@
 <item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useSurrogateKey>true</useSurrogateKey>
-<sourcePk>515756A6-FE36-BEE8-9FA6-2DEE8E429B11</sourcePk>
 <identifying>false</identifying>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>

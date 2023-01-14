@@ -4,7 +4,7 @@
 <createdTime>2023-01-13 20:06:27 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,24 +16,12 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Account_currency_ID" id="573038BB-E959-1993-DBAB-451A305EA71E">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:06:40 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Balance" id="17BABF18-8322-7922-22B4-A3A36439373E">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:07:16 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -42,49 +30,5 @@
 <dataTypeScale>2</dataTypeScale>
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Name" id="7DBED776-B37E-EB63-E766-957023355BD6">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:41:13 UTC</createdTime>
-<generatorID>3433D446-5FE5-5840-84B5-7E6FF85D8A79</generatorID>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<referedAttribute>FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>3 CHAR</dataTypeSize>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Transaction_ID" id="21D98AF8-1E72-5BA2-D554-41C710CC361B">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:44:58 UTC</createdTime>
-<generatorID>674B966D-04B7-D1E0-0182-F9DACB1AAEBA</generatorID>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>F28B4032-DD23-3EEE-99AA-7D1958374FE2</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="515756A6-FE36-BEE8-9FA6-2DEE8E429B11" name="Account_currencies PK">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:07:17 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<pk>true</pk>
-<usedAttributes>
-<attributeRef>573038BB-E959-1993-DBAB-451A305EA71E</attributeRef>
-</usedAttributes>
-</identifier>
-</identifiers>
 </Entity>

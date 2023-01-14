@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="17559724-422D-55E0-9E0B-CDFFC8AE465A" name="Credits">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="17559724-422D-55E0-9E0B-CDFFC8AE465A" name="Loans">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:21:23 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,27 +16,12 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Credit_ID" id="131BB112-8334-35B7-862A-A559048E556A">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:23:32 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>12</dataTypePrecision>
-<dataTypeScale>2</dataTypeScale>
-<ownDataTypeParameters>,12,2</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Starting_amount" id="7D9D39E3-91B0-7DBD-BF9D-CAD3D3B5DCA7">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:24:39 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -50,7 +35,7 @@
 <createdTime>2023-01-13 20:24:57 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -64,7 +49,7 @@
 <createdTime>2023-01-13 20:25:21 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -76,7 +61,7 @@
 <createdTime>2023-01-13 20:25:32 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -88,7 +73,7 @@
 <createdTime>2023-01-13 20:26:12 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>

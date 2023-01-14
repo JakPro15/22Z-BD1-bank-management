@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0C444FAA-789D-D185-D8AF-BA8D9D6B6A2E" name="Currencies">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A789AD2E-9E8C-A4AA-B730-9351277F0FA8" name="Outside_transactions_history">
 <createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:09:52 UTC</createdTime>
+<createdTime>2023-01-14 11:35:33 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
 <item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
@@ -14,23 +14,24 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name" id="FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909">
+<Attribute name="Outside_account_number" id="28D07EE2-0180-AE8E-0815-067B40A132DC">
 <createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:10:06 UTC</createdTime>
+<createdTime>2023-01-14 11:39:49 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
 <item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>3 CHAR</dataTypeSize>
-<ownDataTypeParameters>3 CHAR,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Exchange_rate_to_PLN" id="7671C0D1-4915-2A1E-EBC6-AADC325CDD3B">
+<Attribute name="Amount" id="8A509E05-974E-8608-DBC2-B16DA9F0A344">
 <createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:10:11 UTC</createdTime>
+<createdTime>2023-01-14 11:41:30 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
 <item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
@@ -43,19 +44,4 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 </Attribute>
 </attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="7CF3FFE0-C3A7-FEF2-5280-A18383F837FA" name="Currencies PK">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-14 11:56:30 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
-</engineerTo>
-<pk>true</pk>
-<newElementsIDs>FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909</newElementsIDs>
-<usedAttributes>
-<attributeRef>FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909</attributeRef>
-</usedAttributes>
-</identifier>
-</identifiers>
 </Entity>

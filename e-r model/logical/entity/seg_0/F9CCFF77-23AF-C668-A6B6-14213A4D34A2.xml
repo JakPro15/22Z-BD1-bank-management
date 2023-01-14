@@ -4,7 +4,7 @@
 <createdTime>2023-01-13 19:38:30 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,24 +16,12 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Client_ID" id="C2496B1E-450D-83AE-9851-DF6F9F91DACB">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 19:49:03 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Name" id="E513C8D3-C905-781C-BE93-16F8BFFD5C1C">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 19:39:09 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -46,7 +34,7 @@
 <createdTime>2023-01-13 19:40:11 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -59,7 +47,7 @@
 <createdTime>2023-01-13 19:40:28 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -73,7 +61,7 @@
 <createdTime>2023-01-13 19:42:00 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -86,7 +74,7 @@
 <createdTime>2023-01-13 19:44:34 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -100,7 +88,7 @@
 <createdTime>2023-01-13 19:45:37 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -111,16 +99,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="DA7C82B7-0C48-7F50-3BEE-6277E6E19F80" name="Clients PK">
+<identifier id="45F599EC-E30A-D846-E586-8717C378CC40" name="Clients UK">
 <createdBy>pleba</createdBy>
-<createdTime>2023-01-13 19:49:18 UTC</createdTime>
+<createdTime>2023-01-14 11:54:52 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
-<pk>true</pk>
+<newElementsIDs>2647A21D-6A55-811E-D7CE-D6AAFB989609</newElementsIDs>
 <usedAttributes>
-<attributeRef>C2496B1E-450D-83AE-9851-DF6F9F91DACB</attributeRef>
+<attributeRef>2647A21D-6A55-811E-D7CE-D6AAFB989609</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

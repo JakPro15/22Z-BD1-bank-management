@@ -4,7 +4,7 @@
 <createdTime>2023-01-13 19:59:20 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,24 +16,12 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Card_ID" id="9A1E8BB2-4E84-43FA-97CE-CA12E2FC59B4">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-13 20:02:44 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="Type" id="A689B5BA-1164-97AA-51CA-1F69E72E0A76">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:02:56 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -46,7 +34,7 @@
 <createdTime>2023-01-13 20:03:46 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -59,7 +47,7 @@
 <createdTime>2023-01-13 20:03:10 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -74,7 +62,7 @@
 <createdTime>2023-01-13 20:03:30 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -87,7 +75,7 @@
 <createdTime>2023-01-13 20:04:54 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -97,16 +85,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="68CBBB3D-702D-E230-FA43-7EEE3DAB3C1D" name="Cards PK">
+<identifier id="68CBBB3D-702D-E230-FA43-7EEE3DAB3C1D" name="Cards UK">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:02:55 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
 </engineerTo>
-<pk>true</pk>
+<newElementsIDs>F58ADC64-C0BC-5767-7703-45FD0D1675B3</newElementsIDs>
 <usedAttributes>
-<attributeRef>9A1E8BB2-4E84-43FA-97CE-CA12E2FC59B4</attributeRef>
+<attributeRef>F58ADC64-C0BC-5767-7703-45FD0D1675B3</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

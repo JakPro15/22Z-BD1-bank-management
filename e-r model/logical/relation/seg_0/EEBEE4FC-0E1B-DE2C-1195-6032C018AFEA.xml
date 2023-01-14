@@ -10,9 +10,9 @@
 <identifying>false</identifying>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
-<sourceCardinality>1</sourceCardinality>
+<sourceCardinality>*</sourceCardinality>
 <sourceEntity>66E9ACF5-8BC9-E1C5-15E1-45320EF96B35</sourceEntity>
-<targetCardinalityString>*</targetCardinalityString>
+<targetCardinalityString>1</targetCardinalityString>
 <targetEntity>1FA39EC9-DB2B-F79D-B654-435FE152DE62</targetEntity>
 <transferable>true</transferable>
 <deleteRule>CASCADE</deleteRule>
