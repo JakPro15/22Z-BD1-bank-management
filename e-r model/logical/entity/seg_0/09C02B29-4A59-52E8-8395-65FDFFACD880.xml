@@ -4,7 +4,7 @@
 <createdTime>2023-01-13 20:29:01 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,7 +21,7 @@
 <createdTime>2023-01-13 20:29:46 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -33,7 +33,7 @@
 <createdTime>2023-01-13 20:31:41 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -46,7 +46,7 @@
 <createdTime>2023-01-13 20:34:18 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -54,12 +54,12 @@
 <logicalDatatype>LOGDT007</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Interest_rate" id="63D967F1-C687-A198-B79B-180837783F3B">
+<Attribute name="Yearly_interest_rate" id="63D967F1-C687-A198-B79B-180837783F3B">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:31:58 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -73,7 +73,7 @@
 <createdTime>2023-01-13 20:34:49 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>

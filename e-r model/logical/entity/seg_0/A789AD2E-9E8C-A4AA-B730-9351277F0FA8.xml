@@ -4,7 +4,7 @@
 <createdTime>2023-01-14 11:35:33 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,7 +21,7 @@
 <createdTime>2023-01-14 11:39:49 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -34,7 +34,7 @@
 <createdTime>2023-01-14 11:41:30 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -42,6 +42,18 @@
 <dataTypePrecision>12</dataTypePrecision>
 <dataTypeScale>2</dataTypeScale>
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Transaction_date" id="26A737A5-34AD-7BB8-D87C-96B5324BE8F6">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 19:28:06 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 </Entity>

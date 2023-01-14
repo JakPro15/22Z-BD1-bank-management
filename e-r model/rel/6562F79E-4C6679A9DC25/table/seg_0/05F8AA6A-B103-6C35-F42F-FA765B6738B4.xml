@@ -56,7 +56,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Interest_rate" id="6CD620B7-CBFE-5850-9161-8588A1DD0434">
+<Column name="Yearly_interest_rate" id="6CD620B7-CBFE-5850-9161-8588A1DD0434">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 12:10:57 UTC</createdTime>
 <generatorID>63D967F1-C687-A198-B79B-180837783F3B</generatorID>

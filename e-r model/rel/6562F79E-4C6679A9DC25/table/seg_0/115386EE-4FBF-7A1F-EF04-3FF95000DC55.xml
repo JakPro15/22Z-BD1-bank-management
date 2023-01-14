@@ -46,6 +46,16 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="Transaction_date" id="3754220D-23A8-9608-C229-7B62F8E7F136">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 19:24:40 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="Inside_account_currency_ID" id="7FBB7841-15E0-CCFC-CA76-3C8F42034E4E">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 12:10:57 UTC</createdTime>

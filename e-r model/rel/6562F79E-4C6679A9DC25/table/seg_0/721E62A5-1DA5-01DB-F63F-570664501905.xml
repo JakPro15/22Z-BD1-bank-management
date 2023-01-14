@@ -58,5 +58,15 @@
 <colUsage columnID="06CDB339-5BEC-156A-2266-746840CCF98E"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="6C799F97-B1B7-314E-2BA6-E4E1DDFA3BB4" name="Currencies_Full_name_UN">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 18:50:41 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C40663C4-814B-F2D9-D324-985D43656F2C"/>
+</indexColumnUsage>
+</ind_PK_UK>
 </indexes>
 </Table>

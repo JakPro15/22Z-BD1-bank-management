@@ -69,7 +69,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Interest" id="7779A4C8-2E4D-D182-3A53-1A09525DEAC4">
+<Column name="Yearly_interest_rate" id="7779A4C8-2E4D-D182-3A53-1A09525DEAC4">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 12:10:57 UTC</createdTime>
 <generatorID>59327D7D-2129-AABF-5A29-64398D42F6FC</generatorID>

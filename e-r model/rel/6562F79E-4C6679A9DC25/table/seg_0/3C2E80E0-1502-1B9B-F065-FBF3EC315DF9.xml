@@ -8,7 +8,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Account_currencies_ID" id="1508B50C-8161-3DB5-B359-276133E25742">
+<Column name="Account_currency_ID" id="1508B50C-8161-3DB5-B359-276133E25742">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 12:10:57 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
