@@ -8,7 +8,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Name" id="06CDB339-5BEC-156A-2266-746840CCF98E">
+<Column name="Short_name" id="06CDB339-5BEC-156A-2266-746840CCF98E">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 12:10:57 UTC</createdTime>
 <generatorID>FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909</generatorID>
@@ -18,6 +18,17 @@
 <logicalDatatype>LOGDT025</logicalDatatype>
 <dataTypeSize>3 CHAR</dataTypeSize>
 <ownDataTypeParameters>3 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Full_name" id="C40663C4-814B-F2D9-D324-985D43656F2C">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 13:17:47 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="Exchange_rate_to_PLN" id="2491C8B9-E5B9-2208-04D9-8D7207A88A58">
