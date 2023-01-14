@@ -1,0 +1,17 @@
+DROP TABLE account_currencies CASCADE CONSTRAINTS;
+DROP TABLE accounts CASCADE CONSTRAINTS;
+DROP TABLE cards CASCADE CONSTRAINTS;
+DROP TABLE clients CASCADE CONSTRAINTS;
+DROP TABLE currencies CASCADE CONSTRAINTS;
+DROP TABLE inside_transactions_history CASCADE CONSTRAINTS;
+DROP TABLE investments CASCADE CONSTRAINTS;
+DROP TABLE loans CASCADE CONSTRAINTS;
+DROP TABLE outside_transactions_history CASCADE CONSTRAINTS;
+DROP SEQUENCE account_currencies_account_cur;
+DROP SEQUENCE accounts_accounts_id_seq;
+DROP SEQUENCE cards_cards_id_seq;
+DROP SEQUENCE clients_clients_id_seq;
+DROP SEQUENCE inside_transactions_history_in;
+DROP SEQUENCE investments_investments_id_seq;
+DROP SEQUENCE loans_loans_id_seq;
+DROP SEQUENCE outside_transactions_history_o;

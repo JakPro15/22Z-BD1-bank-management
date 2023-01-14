@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="05F8AA6A-B103-6C35-F42F-FA765B6738B4" name="Investments">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>09C02B29-4A59-52E8-8395-65FDFFACD880</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Investment_ID" id="82517526-84FF-0A66-AE25-A4A0C3BECF9F">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Date_taken" id="6B05513A-60B1-A9B6-1DBC-4507CF97EF98">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>592E0D4B-2AA1-D93D-A905-33B5F92A90D4</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Date_ended" id="E8BE26F6-834D-7AB2-D5E6-63FF98DF8762">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>8820FFC2-D54C-7364-45E9-147CC82F405C</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Blocked_until" id="08D1C487-AAA7-711D-0D2D-4E2CC79A7672">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>3B5E0003-B6B4-47F1-875F-C5E054C3D698</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Interest_rate" id="6CD620B7-CBFE-5850-9161-8588A1DD0434">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>63D967F1-C687-A198-B79B-180837783F3B</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,8,4</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Amount" id="D732FE63-EDA1-E552-BC3C-060CD591B13F">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>2D95DBDD-8F42-C969-DBE1-26BE81CDB20B</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Account_currency_ID" id="F64B5AB4-1864-4119-1AD5-5611A913C014">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="688C4E97-E1E3-5324-D45C-B0140300737B" referredColumn="1508B50C-8161-3DB5-B359-276133E25742"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AC994807-3C38-A02D-6A86-708B3102F667" name="Investments_PK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="82517526-84FF-0A66-AE25-A4A0C3BECF9F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7F1E03B8-7E5E-C68C-0C96-1F4883B89E43" name="Investments_Account_currencies_FK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>5BC61888-F8F7-3ECB-5978-62BA9220E752</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F64B5AB4-1864-4119-1AD5-5611A913C014"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

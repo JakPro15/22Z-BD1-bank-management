@@ -1,0 +1,124 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="51AF60D5-94C8-D30C-77B5-1BCDE87E37DA" name="Inside_transactions_history">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>66E9ACF5-8BC9-E1C5-15E1-45320EF96B35</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Inside_transaction_ID" id="18868FE7-C533-87BA-9845-5A032F4A824A">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Amount_before" id="71CA3844-6B8B-DC25-CE62-0FBC37A5889D">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>79AC226E-B4B5-B124-3C5E-8AFD1F867CF0</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Amount_after" id="D265AB3E-CA36-42AF-E1E0-2C3FBC2F3159">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>45677A09-2436-22CC-754F-DC1AB21D42EF</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Transaction_date" id="57722C54-051E-7525-9657-35B1509D06A7">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>4EEF9890-EADD-0C19-0556-DE89CE376DEE</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Account_currency_from_ID" id="CC678F5A-33C1-F610-CA17-BE439999D4C0">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="ADDC82F0-D54B-2FE7-2849-31A7F7D03F94" referredColumn="1508B50C-8161-3DB5-B359-276133E25742"/>
+</associations>
+</Column>
+<Column name="Account_currency_to_ID" id="C22BB08B-A2E0-93D3-F9D2-16CCFA9B8C50">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="64A97D06-7EED-C425-BBD7-F36F9266FB34" referredColumn="1508B50C-8161-3DB5-B359-276133E25742"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="423E513B-54EE-306C-C30B-859D1E91513B" name="Inside_transactions_history_PK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="18868FE7-C533-87BA-9845-5A032F4A824A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A12149EA-D148-04B7-D0EC-3A06A9BD8B20" name="Inside_transactions_history_Account_currencies_FK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>EEBEE4FC-0E1B-DE2C-1195-6032C018AFEA</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CC678F5A-33C1-F610-CA17-BE439999D4C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="748EC1F2-42A7-B487-3B9F-091885B29CB8" name="Inside_transactions_history_Account_currencies_FKv2">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>674B966D-04B7-D1E0-0182-F9DACB1AAEBA</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C22BB08B-A2E0-93D3-F9D2-16CCFA9B8C50"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

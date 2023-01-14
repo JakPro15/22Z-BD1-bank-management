@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="721E62A5-1DA5-01DB-F63F-570664501905" name="Currencies">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>0C444FAA-789D-D185-D8AF-BA8D9D6B6A2E</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="06CDB339-5BEC-156A-2266-746840CCF98E">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<ownDataTypeParameters>3 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Exchange_rate_to_PLN" id="2491C8B9-E5B9-2208-04D9-8D7207A88A58">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>7671C0D1-4915-2A1E-EBC6-AADC325CDD3B</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="02603E4E-D391-3893-F1F7-DC7241ACDDCB" name="Currencies_PK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>7CF3FFE0-C3A7-FEF2-5280-A18383F837FA</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06CDB339-5BEC-156A-2266-746840CCF98E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

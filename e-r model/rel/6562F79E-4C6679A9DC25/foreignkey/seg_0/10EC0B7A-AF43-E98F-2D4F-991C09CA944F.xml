@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="10EC0B7A-AF43-E98F-2D4F-991C09CA944F" containerWithKeyObject="115386EE-4FBF-7A1F-EF04-3FF95000DC55" localFKIndex="D1EA5CEE-0E3A-7CE5-7C58-BB60FED3F23D" name="Outside_transactions_history_Account_currencies_FK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 12:10:57 UTC</createdTime>
+<generatorID>9C947EA8-5C56-3F2E-9EAC-12484A3608BB</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<referredTableLongName>Account_currencies</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>3C2E80E0-1502-1B9B-F065-FBF3EC315DF9</referredTableID>
+<keyObject>69CE2ECC-9B2D-062E-2179-666176F0A69C</keyObject>
+<referredKeyID>69CE2ECC-9B2D-062E-2179-666176F0A69C</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Account_currencies_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
