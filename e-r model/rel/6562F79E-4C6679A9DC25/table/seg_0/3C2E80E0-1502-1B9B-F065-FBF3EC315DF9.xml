@@ -34,7 +34,7 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Currencies_Name" id="23030FE0-AB93-53CA-3E11-E4C16CEBF939">
+<Column name="Currency_Short_name" id="23030FE0-AB93-53CA-3E11-E4C16CEBF939">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 12:10:57 UTC</createdTime>
 <generatorID>C71C56BB-CFED-BA28-ABCB-78B5DA5BFA4B</generatorID>

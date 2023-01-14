@@ -4,7 +4,7 @@
 <createdTime>2023-01-13 20:09:52 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -15,12 +15,12 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Name" id="FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909">
+<Attribute name="Short_name" id="FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:10:06 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -28,12 +28,25 @@
 <dataTypeSize>3 CHAR</dataTypeSize>
 <ownDataTypeParameters>3 CHAR,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Full_name" id="429C611B-7355-ED20-7572-D77E625B92BD">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-14 13:19:39 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<engineerTo>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="Exchange_rate_to_PLN" id="7671C0D1-4915-2A1E-EBC6-AADC325CDD3B">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-13 20:10:11 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -48,8 +61,9 @@
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 11:56:30 UTC</createdTime>
 <ownerDesignName>e-r model</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="EDE0BEAA-D639-BB50-094C-DC258B129D2E" value="true"/>
+<item key="6562F79E-F9AE-4EE1-071A-4C6679A9DC25" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <newElementsIDs>FA2D5F60-0581-C3ED-3FB8-E9ACB58DC909</newElementsIDs>
