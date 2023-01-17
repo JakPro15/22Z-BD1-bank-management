@@ -31,3 +31,28 @@ END;
 
 SELECT client_id, monthly_card_payment(client_id)
 FROM CLIENTS;
+
+
+
+--procedura, która ustawia datê zamkniêcia konta klienta na miesi¹c do przodu,
+--jesli klient przez rok nie sp³aci³ wiêcej 10% swojej po¿yczki
+
+
+--funkcja, która dla podanej waluty zrobi jej "bilans" u¿ycia
+--suma w po¿yczkach, suma w inwestycjach, suma w przelewach wewn. i zewn.
+--mo¿na po czymœ pogrupowaæ jeszcze
+
+
+--funkcja zwi¹zana z obliczaniem czegoœ w kredytach i/lub po¿yczkach
+
+
+--procedura przydzielaj¹ca bonusy finansowe top 3 najaktywniejszym klientom
+
+
+
+
+
+
+
+
+
