@@ -32,6 +32,66 @@ END;
 SELECT client_id, monthly_card_payment(client_id)
 FROM CLIENTS;
 
+-- Funkcja oblicza ogólny balans w PLN wszystkich kont klienta, wliczaj¹c po¿yczki i lokaty.
+CREATE OR REPLACE FUNCTION calculate_total_balance(p_client_id NUMBER)
+RETURN NUMERIC
+AS
+    v_total_balance NUMERIC(12, 2);
+    v_total_investments NUMERIC(12, 2);
+    v_total_loans NUMERIC(12, 2);
+BEGIN
+    SELECT SUM(ac.balance * c.exchange_rate_to_pln)
+    INTO v_total_balance
+    FROM ACCOUNT_CURRENCIES ac
+    INNER JOIN CURRENCIES c ON c.short_name = ac.currency_short_name
+    INNER JOIN ACCOUNTS a USING(account_id)
+    WHERE a.client_id = p_client_id;
+    
+    IF v_total_balance IS NULL
+    THEN
+        v_total_balance := 0;
+    END IF;
+
+    SELECT SUM(i.amount * c.exchange_rate_to_pln)
+    INTO v_total_investments
+    FROM INVESTMENTS i
+    INNER JOIN ACCOUNT_CURRENCIES ac USING(account_currency_id)
+    INNER JOIN CURRENCIES c ON c.short_name = ac.currency_short_name
+    INNER JOIN ACCOUNTS a USING(account_id)
+    WHERE a.client_id = p_client_id;
+    
+    IF v_total_investments IS NULL
+    THEN
+        v_total_investments := 0;
+    END IF;
+
+    SELECT SUM(l.current_amount * c.exchange_rate_to_pln)
+    INTO v_total_loans
+    FROM LOANS l
+    INNER JOIN ACCOUNT_CURRENCIES ac USING(account_currency_id)
+    INNER JOIN CURRENCIES c ON c.short_name = ac.currency_short_name
+    INNER JOIN ACCOUNTS a USING(account_id)
+    WHERE a.client_id = p_client_id;
+    
+    IF v_total_loans IS NULL
+    THEN
+        v_total_loans := 0;
+    END IF;
+    
+    RETURN v_total_balance + v_total_investments - v_total_loans;
+END;
+/
+
+SELECT client_id, calculate_total_balance(client_id)
+FROM CLIENTS;
+
+
+SELECT outside_transaction_id, transaction_date, creation_date, closing_date,
+       CASE WHEN(transaction_date < creation_date OR transaction_date > closing_date) THEN 1 ELSE 0 END AS invalid
+FROM OUTSIDE_TRANSACTIONS_HISTORY
+INNER JOIN ACCOUNT_CURRENCIES ON account_currency_id = inside_account_currency_id
+INNER JOIN ACCOUNTS USING(account_id)
+ORDER BY outside_transactions_history.outside_transaction_id;
 
 
 --procedura, która ustawia datê zamkniêcia konta klienta na miesi¹c do przodu,
