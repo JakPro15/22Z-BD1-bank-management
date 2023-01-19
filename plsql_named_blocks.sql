@@ -94,6 +94,46 @@ INNER JOIN ACCOUNTS USING(account_id)
 ORDER BY outside_transactions_history.outside_transaction_id;
 
 
+
+--procedura odpowiedzialna za wziêcie po¿yczki i dodania pieniêdzy do konta
+CREATE OR REPLACE PROCEDURE take_loan (v_starting_amount NUMBER, v_date_due DATE, 
+    v_yearly_interest_rate NUMBER, v_account_currency_id NUMBER)
+AS
+    v_current_balance INTEGER;
+BEGIN
+    SELECT balance INTO v_current_balance FROM ACCOUNT_CURRENCIES WHERE account_currency_id = v_account_currency_id;
+
+    UPDATE ACCOUNT_CURRENCIES
+    SET balance = v_current_balance + v_starting_amount
+    WHERE account_currency_id = v_account_currency_id;
+
+    INSERT INTO LOANS VALUES (NULL, v_starting_amount, v_starting_amount, SYSDATE, v_date_due, 
+        v_yearly_interest_rate, v_account_currency_id);
+    
+END;
+/
+
+--procedura odpowiedzialna za za³o¿enie lokaty i pobrania pieniedzy z konta
+CREATE OR REPLACE PROCEDURE make_investment (v_blocked_until DATE, v_yearly_interest_rate NUMBER,
+    v_amount NUMBER, v_account_currency_id NUMBER)
+AS
+    v_current_balance INTEGER;
+BEGIN
+    SELECT balance INTO v_current_balance FROM ACCOUNT_CURRENCIES WHERE account_currency_id = v_account_currency_id;
+    
+    IF v_current_balance - v_amount > 0
+    THEN
+        UPDATE ACCOUNT_CURRENCIES
+        SET balance = v_current_balance - v_amount
+        WHERE account_currency_id = v_account_currency_id;
+        
+        INSERT INTO INVESTMENTS VALUES (NULL, SYSDATE, NULL, v_blocked_until, v_yearly_interest_rate,
+            v_amount, v_account_currency_id); 
+    END IF;
+END;
+/
+
+
 --procedura, która ustawia datê zamkniêcia konta klienta na miesi¹c do przodu,
 --jesli klient przez rok nie sp³aci³ wiêcej 10% swojej po¿yczki
 
