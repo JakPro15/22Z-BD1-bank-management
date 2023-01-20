@@ -70,6 +70,17 @@
 <colAssociation fkAssociation="10EC0B7A-AF43-E98F-2D4F-991C09CA944F" referredColumn="1508B50C-8161-3DB5-B359-276133E25742"/>
 </associations>
 </Column>
+<Column name="Transaction_date1" id="0D6E6523-C924-C90E-4B65-9D688240B945">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<generatorID>26A737A5-34AD-7BB8-D87C-96B5324BE8F6</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="5F71992F-EBDB-8AEE-384E-5FDAE3E2A106" name="Outside_transactions_history_PK">

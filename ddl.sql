@@ -16,8 +16,13 @@ CREATE TABLE ACCOUNTS (
     creation_date DATE DEFAULT ON NULL SYSDATE NOT NULL,
     closing_date DATE,
     transaction_limit NUMBER(12, 2),
-    client_ID NUMBER REFERENCES CLIENTS(client_ID) NOT NULL,
     CONSTRAINT close_after_create CHECK(closing_date >= creation_date)
+);
+
+CREATE TABLE CLIENTS_ACCOUNTS (
+    client_ID NUMBER REFERENCES CLIENTS(client_ID) NOT NULL,
+    account_ID NUMBER REFERENCES ACCOUNTS(account_ID) NOT NULL,
+    CONSTRAINT clients_accounts_pk PRIMARY KEY (client_ID, account_ID)
 );
 
 CREATE TABLE CARDS (

@@ -82,20 +82,6 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Client_ID" id="486699F5-E472-3D31-F36B-0713A57DD1F4">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-14 12:10:57 UTC</createdTime>
-<ownerDesignName>e-r model</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="F974B398-17BB-AA7C-5827-110D90E5CCC8" referredColumn="4F41EB0C-C4D4-EC86-CBD1-421F5EE63ABD"/>
-</associations>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="FFDA8719-23C1-D70D-81DA-1E31B95B183C" name="Accounts_PK">
@@ -117,17 +103,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="2199B980-DB8B-C4D9-E0D7-0A050279F57A"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="9ABBE000-A83C-0C67-2EFE-B57478E18ACA" name="Accounts_Clients_FK">
-<createdBy>pleba</createdBy>
-<createdTime>2023-01-14 12:10:57 UTC</createdTime>
-<generatorID>001C3967-9B23-7715-40F5-729E15D5DD09</generatorID>
-<ownerDesignName>e-r model</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="486699F5-E472-3D31-F36B-0713A57DD1F4"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0E2A8C1F-95FF-C3D9-6942-331588BDEA70" name="Clients_accounts">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Client_ID" id="66751861-7E01-5F38-9ADF-19D4442DA315">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="26D5DB18-7C68-5BB7-0720-80DDE9FCB458" referredColumn="4F41EB0C-C4D4-EC86-CBD1-421F5EE63ABD"/>
+</associations>
+</Column>
+<Column name="Account_ID" id="FAE8B718-B199-013D-D9EA-9141EB2E9A22">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="34BAF648-2811-E09B-94DF-10C6F5D02738" referredColumn="4C93EA55-52C8-5F6A-F270-FB4C8E11415F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E4B3FD2D-E14D-9893-CC68-50DB71F454E7" name="Clients_accounts_PK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<ownerDesignName>e-r model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="66751861-7E01-5F38-9ADF-19D4442DA315"/>
+<colUsage columnID="FAE8B718-B199-013D-D9EA-9141EB2E9A22"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D07A31CB-A316-2FAA-0FB5-396B391A622C" name="Clients_accounts_Clients_FK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<generatorID>001C3967-9B23-7715-40F5-729E15D5DD09</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="66751861-7E01-5F38-9ADF-19D4442DA315"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3AC37AC6-E371-3F12-BB23-7A6BE26EAC89" name="Clients_accounts_Accounts_FK">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<generatorID>001C3967-9B23-7715-40F5-729E15D5DD09</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FAE8B718-B199-013D-D9EA-9141EB2E9A22"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

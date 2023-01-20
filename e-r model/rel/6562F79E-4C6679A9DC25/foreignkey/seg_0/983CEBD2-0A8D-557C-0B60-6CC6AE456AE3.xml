@@ -10,7 +10,7 @@
 <keyObject>02603E4E-D391-3893-F1F7-DC7241ACDDCB</keyObject>
 <referredKeyID>02603E4E-D391-3893-F1F7-DC7241ACDDCB</referredKeyID>
 <mandatory>true</mandatory>
-<refColNames>Name</refColNames>
+<refColNames>Short_name</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>

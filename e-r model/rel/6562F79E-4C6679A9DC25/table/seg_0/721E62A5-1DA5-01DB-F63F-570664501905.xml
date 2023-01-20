@@ -44,6 +44,18 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="Full_name1" id="09635E97-3E0B-C3B1-5FEC-88352D2F2C4B">
+<createdBy>pleba</createdBy>
+<createdTime>2023-01-20 10:11:28 UTC</createdTime>
+<generatorID>429C611B-7355-ED20-7572-D77E625B92BD</generatorID>
+<ownerDesignName>e-r model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 CHAR</dataTypeSize>
+<ownDataTypeParameters>40 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="02603E4E-D391-3893-F1F7-DC7241ACDDCB" name="Currencies_PK">

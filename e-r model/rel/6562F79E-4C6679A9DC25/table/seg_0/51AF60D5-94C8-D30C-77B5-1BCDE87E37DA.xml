@@ -109,7 +109,7 @@
 <colUsage columnID="CC678F5A-33C1-F610-CA17-BE439999D4C0"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="748EC1F2-42A7-B487-3B9F-091885B29CB8" name="Inside_transactions_history_Account_currencies_FKv2">
+<ind_PK_UK id="748EC1F2-42A7-B487-3B9F-091885B29CB8" name="Inside_transactions_history_Account_currencies_FKv1">
 <createdBy>pleba</createdBy>
 <createdTime>2023-01-14 12:10:57 UTC</createdTime>
 <generatorID>674B966D-04B7-D1E0-0182-F9DACB1AAEBA</generatorID>
