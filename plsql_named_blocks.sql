@@ -31,10 +31,6 @@ BEGIN
 END;
 /
 
-SELECT client_id, monthly_card_payment(client_id)
-FROM CLIENTS;
-
-
 -- Funkcja oblicza ogólny balans w PLN wszystkich kont klienta, wliczaj¹c po¿yczki i lokaty.
 CREATE OR REPLACE FUNCTION calculate_total_balance(p_client_id NUMBER)
 RETURN NUMERIC
@@ -88,18 +84,6 @@ BEGIN
 END;
 /
 
-SELECT client_id, calculate_total_balance(client_id)
-FROM CLIENTS;
-
-
-SELECT outside_transaction_id, transaction_date, creation_date, closing_date,
-       CASE WHEN(transaction_date < creation_date OR transaction_date > closing_date) THEN 1 ELSE 0 END AS invalid
-FROM OUTSIDE_TRANSACTIONS_HISTORY
-INNER JOIN ACCOUNT_CURRENCIES ON account_currency_id = inside_account_currency_id
-INNER JOIN ACCOUNTS USING(account_id)
-ORDER BY outside_transactions_history.outside_transaction_id;
-
-
 -- Procedura rejestruje wziêcie po¿yczki przez podane konto i dodaje pieni¹dze do konta
 CREATE OR REPLACE PROCEDURE take_loan(p_starting_amount NUMERIC, p_date_due DATE, 
                                       p_yearly_interest_rate NUMERIC, p_account_id NUMBER,
@@ -123,17 +107,10 @@ BEGIN
     NULL;
 EXCEPTION
     WHEN no_data_found THEN
-        dbms_output.put_line('This account does not have this currency. Please add the account currency first.');
+        dbms_output.put_line('To konto nie ma tej waluty. Nale¿y najpierw dodaæ tê walutê do tego konta.');
         RAISE;
 END;
 /
-
-SELECT * FROM ACCOUNTS WHERE account_id = 11;
-SELECT * FROM ACCOUNT_CURRENCIES WHERE account_id = 11;
-SELECT * FROM LOANS ORDER BY loan_id DESC FETCH NEXT 1 ROWS ONLY;
-EXEC take_loan(100000, '2025-01-01', 5 / 100, 11, 'GBP');
-ROLLBACK;
-
 
 -- Procedura rejestruje za³o¿enie lokaty przez podane konto i odejmuje pieni¹dze z konta.
 CREATE OR REPLACE PROCEDURE make_investment(p_amount NUMERIC, p_blocked_until DATE, 
@@ -163,11 +140,10 @@ BEGIN
     END IF;
 EXCEPTION
     WHEN no_data_found THEN
-        dbms_output.put_line('This account does not have this currency. Please add the account currency first.');
+        dbms_output.put_line('To konto nie ma tej waluty. Nale¿y najpierw dodaæ tê walutê do tego konta.');
         RAISE;
 END;
 /
-
 
 -- Procedura rejestruje przelew wewnêtrzny. Dodaje/odejmuje pieni¹dze zgodnie z obecnym kursem walut.
 CREATE OR REPLACE PROCEDURE make_inside_transaction(p_amount NUMERIC, p_account_from_id NUMBER,
@@ -231,15 +207,12 @@ BEGIN
     ELSE
         RAISE_APPLICATION_ERROR(-20001, 'Konta wysy³aj¹cego nie staæ na wykonanie takiego przelewu!');
     END IF;
+EXCEPTION
+    WHEN no_data_found THEN
+        dbms_output.put_line('Dodanie transakcji wewnêtrznej siê nie powiod³o. Nale¿y zweryfikowaæ, czy konta istniej¹ i maj¹ takie waluty.');
+        RAISE;
 END;
 /
-
-SELECT * FROM ACCOUNT_CURRENCIES WHERE account_id IN (11, 17);
-SELECT * FROM INSIDE_TRANSACTIONS_HISTORY ORDER BY inside_transaction_id DESC FETCH NEXT 4 ROWS ONLY;
-EXEC make_inside_transaction(100, 17, 11, 'GBP', 'PLN');
-ROLLBACK;
-
-
 
 -- Procedura rejestruje przelew zewnêtrzny (wychodz¹cy do lub przychodz¹cy z innego banku)
 -- i dodaje/odejmuje odpowiedni¹ iloœæ pieniêdzy.
@@ -278,14 +251,12 @@ BEGIN
     ELSE
         RAISE_APPLICATION_ERROR(-20001, 'Wewnêtrznego konta nie staæ na wykonanie takiego przelewu!');
     END IF;
+EXCEPTION
+    WHEN no_data_found THEN
+        dbms_output.put_line('Dodanie transakcji wewnêtrznej siê nie powiod³o. Nale¿y zweryfikowaæ, czy konta istniej¹ i maj¹ takie waluty.');
+        RAISE;
 END;
 /
-
-SELECT * FROM ACCOUNT_CURRENCIES WHERE account_id = 11;
-SELECT * FROM OUTSIDE_TRANSACTIONS_HISTORY ORDER BY outside_transaction_id DESC FETCH NEXT 4 ROWS ONLY;
-EXEC make_outside_transaction('abbc', -1000, 11, 'PLN');
-ROLLBACK;
-
 
 -- Procedura blokuje wszystkie konta, które przez rok nie sp³aci³y 10% wziêtej po¿yczki.
 -- Zablokowanie konta oznacza ustawienie jego limitu transakcji na 0 i zablokowanie wszystkich jego kart.
@@ -329,11 +300,148 @@ BEGIN
 END;
 /
 
-EXEC block_unpaid_accounts;
-SELECT * FROM ACCOUNTS WHERE account_id = 5;
-SELECT * FROM CARDS WHERE account_id = 5;
-SELECT * FROM LOANS WHERE account_currency_id IN (SELECT account_currency_id FROM ACCOUNT_CURRENCIES WHERE account_id = 5);
+-- Wyzwalacz weryfikuje, czy data wpisywanej transakcji wewnêtrznej jest miêdzy za³o¿eniem a zamkniêciem uczestnicz¹cych kont.
+CREATE OR REPLACE TRIGGER inside_transaction_date_trig
+BEFORE INSERT OR UPDATE OF transaction_date ON INSIDE_TRANSACTIONS_HISTORY
+FOR EACH ROW
+WHEN (new.transaction_date IS NOT NULL)
+DECLARE
+    v_creation_date_1 DATE;
+    v_closing_date_1 DATE;
+    v_creation_date_2 DATE;
+    v_closing_date_2 DATE;
+BEGIN
+    SELECT creation_date, closing_date
+    INTO v_creation_date_1, v_closing_date_1
+    FROM ACCOUNTS
+    INNER JOIN ACCOUNT_CURRENCIES USING(account_id)
+    WHERE account_currency_id = :new.account_currency_from_id;
 
---wyzwalacz, który sprawdza, czy osoba zak³adaj¹ca konto ukoñczy³a 18 lat
+    IF :new.transaction_date < v_creation_date_1 OR :new.transaction_date > v_closing_date_1
+    THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Konto wysy³aj¹ce przelew nie istnia³o w momencie transakcji!');
+    END IF;
 
+    SELECT creation_date, closing_date
+    INTO v_creation_date_2, v_closing_date_2
+    FROM ACCOUNTS
+    INNER JOIN ACCOUNT_CURRENCIES USING(account_id)
+    WHERE account_currency_id = :new.account_currency_to_id;
+    
+    IF :new.transaction_date < v_creation_date_2 OR :new.transaction_date > v_closing_date_2
+    THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Konto odbieraj¹ce przelew nie istnia³o w momencie transakcji!');
+    END IF;
+END;
+/
+
+-- Wyzwalacz weryfikuje, czy data wpisywanej transakcji zewnêtrznej jest miêdzy za³o¿eniem a zamkniêciem konta.
+CREATE OR REPLACE TRIGGER outside_transaction_date_trig
+BEFORE INSERT OR UPDATE OF transaction_date ON OUTSIDE_TRANSACTIONS_HISTORY
+FOR EACH ROW
+WHEN (new.transaction_date IS NOT NULL)
+DECLARE
+    v_creation_date DATE;
+    v_closing_date DATE;
+BEGIN
+    SELECT creation_date, closing_date
+    INTO v_creation_date, v_closing_date
+    FROM ACCOUNTS
+    INNER JOIN ACCOUNT_CURRENCIES USING(account_id)
+    WHERE account_currency_id = :new.inside_account_currency_id;
+
+    IF :new.transaction_date < v_creation_date OR :new.transaction_date > v_closing_date
+    THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Konto uczestnicz¹ce w przelewie nie istnia³o w momencie transakcji!');
+    END IF;
+END;
+/
+
+-- Wyzwalacz weryfikuje, czy data wziêcia wpisywanej po¿yczki s¹ miêdzy za³o¿eniem a zamkniêciem konta.
+CREATE OR REPLACE TRIGGER loan_date_trig
+BEFORE INSERT OR UPDATE OF date_taken ON LOANS
+FOR EACH ROW
+DECLARE
+    v_creation_date DATE;
+    v_closing_date DATE;
+BEGIN
+    SELECT creation_date, closing_date
+    INTO v_creation_date, v_closing_date
+    FROM ACCOUNTS
+    INNER JOIN ACCOUNT_CURRENCIES USING(account_id)
+    WHERE account_currency_id = :new.account_currency_id;
+
+    IF :new.date_taken < v_creation_date OR :new.date_taken > v_closing_date
+    THEN
+        RAISE_APPLICATION_ERROR(-20001, 'To konto nie istnia³o w momencie wziêcia po¿yczki!');
+    END IF;
+END;
+/
+
+-- Wyzwalacz weryfikuje, czy daty wziêcia i zakoñczenia wpisywanej lokaty s¹ miêdzy za³o¿eniem a zamkniêciem konta.
+CREATE OR REPLACE TRIGGER investment_date_trig
+BEFORE INSERT OR UPDATE OF date_taken, date_ended ON INVESTMENTS
+FOR EACH ROW
+DECLARE
+    v_creation_date DATE;
+    v_closing_date DATE;
+BEGIN
+    SELECT creation_date, closing_date
+    INTO v_creation_date, v_closing_date
+    FROM ACCOUNTS
+    INNER JOIN ACCOUNT_CURRENCIES USING(account_id)
+    WHERE account_currency_id = :new.account_currency_id;
+
+    IF :new.date_taken < v_creation_date OR :new.date_taken > v_closing_date OR
+       :new.date_ended < v_creation_date OR :new.date_ended > v_closing_date
+    THEN
+        RAISE_APPLICATION_ERROR(-20001, 'To konto nie istnia³o w momencie wziêcia lub zakoñczenia lokaty!');
+    END IF;
+END;
+/
+
+-- Wyzwalacz sprawdza, czy niepe³noletni w³aœciciel konta wspó³dzieli to konto z co najmniej jedn¹ osob¹ pe³noletni¹.
+CREATE OR REPLACE TRIGGER account_owner_trig
+BEFORE INSERT OR UPDATE ON CLIENTS_ACCOUNTS
+FOR EACH ROW
+DECLARE
+    v_adult_owners NUMBER := 0;
+    v_pesel CLIENTS.pesel%TYPE;
+    v_pesel_birth_number NUMBER;
+BEGIN
+    FOR v_client_id IN (SELECT client_id
+                        FROM CLIENTS_ACCOUNTS
+                        WHERE account_id = :new.account_id
+                        UNION
+                        SELECT :new.client_id
+                        FROM DUAL)
+    LOOP
+        SELECT pesel
+        INTO v_pesel
+        FROM CLIENTS
+        WHERE client_id = v_client_id.client_id;
+
+        IF v_pesel IS NOT NULL
+        THEN
+            v_pesel_birth_number := TO_NUMBER(SUBSTR(v_pesel, 1, 2));
+            IF v_pesel_birth_number < MOD(EXTRACT(YEAR FROM SYSDATE), 100)
+            THEN
+                v_pesel_birth_number := v_pesel_birth_number + 2000;
+            ELSE
+                v_pesel_birth_number := v_pesel_birth_number + 1900;
+            END IF;
+            
+            IF EXTRACT(YEAR FROM SYSDATE) - v_pesel_birth_number >= 18
+            THEN
+                v_adult_owners := v_adult_owners + 1;
+            END IF;
+        END IF;
+    END LOOP;
+    
+    IF v_adult_owners = 0
+    THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Konto musi mieæ co najmniej jednego pe³noletniego w³aœciciela!');
+    END IF;
+END;
+/
 
