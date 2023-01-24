@@ -1,3 +1,33 @@
+-- Zapytanie wypisuje informacje o wszystkich transakcjach, w których uczestniczył klient 1.
+SELECT own_a.account_number AS client_1_account_number, other_a.account_number AS other_account_number,
+       transaction_date, -amount_before AS amount_received
+FROM INSIDE_TRANSACTIONS_HISTORY it
+INNER JOIN ACCOUNT_CURRENCIES own_ac ON it.account_currency_from_id = own_ac.account_currency_id
+INNER JOIN ACCOUNTS own_a ON own_ac.account_id = own_a.account_id
+INNER JOIN CLIENTS_ACCOUNTS ca ON ca.account_id = own_a.account_id
+INNER JOIN ACCOUNT_CURRENCIES other_ac ON it.account_currency_to_id = other_ac.account_currency_id
+INNER JOIN ACCOUNTS other_a ON other_ac.account_id = other_a.account_id
+WHERE client_id = 1
+UNION
+SELECT own_a.account_number AS client_1_account_number, other_a.account_number AS other_account_number,
+       transaction_date, amount_after AS amount_received
+FROM INSIDE_TRANSACTIONS_HISTORY it
+INNER JOIN ACCOUNT_CURRENCIES own_ac ON it.account_currency_to_id = own_ac.account_currency_id
+INNER JOIN ACCOUNTS own_a ON own_ac.account_id = own_a.account_id
+INNER JOIN CLIENTS_ACCOUNTS ca ON ca.account_id = own_a.account_id
+INNER JOIN ACCOUNT_CURRENCIES other_ac ON it.account_currency_from_id = other_ac.account_currency_id
+INNER JOIN ACCOUNTS other_a ON other_ac.account_id = other_a.account_id
+WHERE client_id = 1
+UNION
+SELECT account_number AS client_1_account_number, ot.outside_account_number AS other_account_number,
+       transaction_date, amount AS amount_received
+FROM OUTSIDE_TRANSACTIONS_HISTORY ot
+INNER JOIN ACCOUNT_CURRENCIES ac ON ot.inside_account_currency_id = ac.account_currency_id
+INNER JOIN ACCOUNTS USING(account_id)
+INNER JOIN CLIENTS_ACCOUNTS USING(account_id)
+WHERE client_id = 1;
+
+
 -- Zapytanie demonstruje działanie funkcji monthly_card_payment.
 -- Pokazuje wartość funkcji oraz liczbę kart każdego typu dla wszystkich klientów.
 SELECT client_id, monthly_card_payment(client_id), NVL(debit_cards, 0) AS debit_cards, NVL(credit_cards, 0) AS credit_cards
