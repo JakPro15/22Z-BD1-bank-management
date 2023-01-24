@@ -1,0 +1,1 @@
+rm .\src\*.class; javac -classpath .\lib\ojdbc10.jar .\src\*.java; java -classpath .\src\ --module-path .\lib\ --add-modules ojdbc10 App

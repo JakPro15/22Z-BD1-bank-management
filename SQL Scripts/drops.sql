@@ -1,0 +1,18 @@
+DROP TABLE clients_accounts CASCADE CONSTRAINTS;
+DROP TABLE account_currencies CASCADE CONSTRAINTS;
+DROP TABLE accounts CASCADE CONSTRAINTS;
+DROP TABLE cards CASCADE CONSTRAINTS;
+DROP TABLE clients CASCADE CONSTRAINTS;
+DROP TABLE currencies CASCADE CONSTRAINTS;
+DROP TABLE inside_transactions_history CASCADE CONSTRAINTS;
+DROP TABLE investments CASCADE CONSTRAINTS;
+DROP TABLE loans CASCADE CONSTRAINTS;
+DROP TABLE outside_transactions_history CASCADE CONSTRAINTS;
+DROP FUNCTION calculate_total_balance;
+DROP FUNCTION monthly_card_payment;
+DROP PROCEDURE block_unpaid_accounts;
+DROP PROCEDURE make_inside_transaction;
+DROP PROCEDURE make_investment;
+DROP PROCEDURE make_outside_transaction;
+DROP PROCEDURE take_loan;
+PURGE RECYCLEBIN;
