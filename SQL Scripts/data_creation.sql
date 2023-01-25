@@ -1,23 +1,23 @@
 --INSERT INTO CLIENTS
 INSERT INTO CLIENTS VALUES (NULL, 'Jan', 'Kowalski', '77120112345', 'M', '123456789', 'jan.kowalski@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Anna', 'Nowak', '78120112345', 'K', '987654321', 'anna.nowak@gmail.com');
-INSERT INTO CLIENTS VALUES (NULL, 'Piotr', 'Wojcik', '02201067890', 'M', '098765432', 'piotr.wojcik@gmail.com');
+INSERT INTO CLIENTS VALUES (NULL, 'Piotr', 'Wójcik', '02201067890', 'M', '098765432', 'piotr.wojcik@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Beata', 'Mazur', '80020112345', 'K', '521584692', 'beata.mazur@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Kamil', 'Kowalski', '83010112345', 'M', '567890123', 'kamil.kowalski@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Agnieszka', 'Kwiatkowska', '85010112345', 'K', '321012958', 'agnieszka.kwiatkowska@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Tomasz', 'Nowakowski', '86030112345', 'M', '102222948', 'tomasz.nowakowski@gmail.com');
-INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jab�o�ska', '90020112345', 'K', '498102924', 'ewa.jab�o�ska@gmail.com');
+INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jabłońska', '90020112345', 'K', '498102924', 'ewa.jab�o�ska@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Marek', 'Kowalczyk', '91010112345', 'M', '142148092', 'marek.kowalczyk@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Krzysztof', 'Rutkowski', '80010705856', 'M', '909484101', 'krzysztof.rutkowski@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Agnieszka', 'Kwiatkowska', '65031012345', 'K', '112112112', 'agnieszka.kwiatkowska@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Tomasz', 'Nowakowski', '70012054321', 'M', '997997997', 'tomasz.nowakowski@gmail.com');
-INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jab�o�ska', '80011012345', 'K', '213721150', 'ewa.jab�o�ska@gmail.com');
+INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jabłońska', '80011012345', 'K', '213721150', 'ewa.jab�o�ska@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Marek', 'Kowalczyk', '84050123456', 'M', '420213700', 'marek.kowalczyk@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Dorota', 'Wieczorek', '83120567890', 'K', '666000666', 'dorota.wieczorek@gmail.com');
-INSERT INTO CLIENTS VALUES (NULL, 'Grzegorz', 'B�k', '95121567890', 'M', '141252292', 'grzegorz.bak@gmail.com');
+INSERT INTO CLIENTS VALUES (NULL, 'Grzegorz', 'Bąk', '95121567890', 'M', '141252292', 'grzegorz.bak@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Karolina', 'Czajka', '00051123456', 'K', '987999123', 'karolina.czajka@wp.pl');
-INSERT INTO CLIENTS VALUES (NULL, 'Pawe�', 'Duda', '01010123456', 'M', '241289102', 'pawel.duda@o2.pl');
-INSERT INTO CLIENTS VALUES (NULL, 'Magda', 'Fijo�ek', '96011223456', 'K', '901234567', 'magda.fijolek@gmail.com');
+INSERT INTO CLIENTS VALUES (NULL, 'Paweł', 'Duda', '01010123456', 'M', '241289102', 'pawel.duda@o2.pl');
+INSERT INTO CLIENTS VALUES (NULL, 'Magda', 'Fijołek', '96011223456', 'K', '901234567', 'magda.fijolek@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Lisowska', '92101502856', 'K', '555779999', 'ewa.lisowska@wp.pl');
 INSERT INTO CLIENTS VALUES (NULL, 'Mariusz', 'Mazurkiewicz', '50011307856', 'M', '555776666', 'mariusz.mazurkiewicz@o2.pl');
 INSERT INTO CLIENTS VALUES (NULL, 'Agnieszka', 'Nowacka', '72012009856', 'K', '555773333', 'agnieszka.nowacka@gmail.com');
@@ -136,29 +136,29 @@ INSERT INTO CARDS VALUES (NULL, 'C', '1369809785636768', NULL, '2019-12-01', 'N'
 INSERT INTO CARDS VALUES (NULL, 'D', '4578579808675444', 2000, NULL, 'N', 15);
 
 --INSERT INTO CURRENCIES
-INSERT INTO CURRENCIES VALUES ('PLN', 'z�oty polski', 1.0);
+INSERT INTO CURRENCIES VALUES ('PLN', 'złoty polski', 1.0);
 INSERT INTO CURRENCIES VALUES ('THB', 'bat (Tajlandia)', 0.13);
-INSERT INTO CURRENCIES VALUES ('USD', 'dolar ameryka�ski', 4.34);
+INSERT INTO CURRENCIES VALUES ('USD', 'dolar amerykański', 4.34);
 INSERT INTO CURRENCIES VALUES ('AUD', 'dolar australijski', 3.02);
 INSERT INTO CURRENCIES VALUES ('CAD', 'dolar kanadyjski', 3.24);
 INSERT INTO CURRENCIES VALUES ('EUR', 'euro', 4.7);
-INSERT INTO CURRENCIES VALUES ('HUF', 'forint w�gierski', 1.18);
+INSERT INTO CURRENCIES VALUES ('HUF', 'forint węgierski', 1.18);
 INSERT INTO CURRENCIES VALUES ('CHF', 'frank szwajcarski', 4.7);
 INSERT INTO CURRENCIES VALUES ('GBP', 'funt szterling', 5.3);
-INSERT INTO CURRENCIES VALUES ('UAH', 'hrywna ukrai�ska', 0.13);
-INSERT INTO CURRENCIES VALUES ('JPY', 'jen japo�ski', 3.38);
+INSERT INTO CURRENCIES VALUES ('UAH', 'hrywna ukraińska', 0.13);
+INSERT INTO CURRENCIES VALUES ('JPY', 'jen japoński', 3.38);
 INSERT INTO CURRENCIES VALUES ('CZK', 'korona czeska', 0.2);
-INSERT INTO CURRENCIES VALUES ('DKK', 'korona du�ska', 0.63);
+INSERT INTO CURRENCIES VALUES ('DKK', 'korona duńska', 0.63);
 INSERT INTO CURRENCIES VALUES ('NOK', 'korona norweska', 0.44);
 INSERT INTO CURRENCIES VALUES ('SEK', 'korona szwedzka', 0.42);
-INSERT INTO CURRENCIES VALUES ('RON', 'lej rumu�ski', 0.95);
-INSERT INTO CURRENCIES VALUES ('BGN', 'lew bu�garski', 2.4);
+INSERT INTO CURRENCIES VALUES ('RON', 'lej rumuński', 0.95);
+INSERT INTO CURRENCIES VALUES ('BGN', 'lew bułgarski', 2.4);
 INSERT INTO CURRENCIES VALUES ('TRY', 'lira turecka', 0.23);
 INSERT INTO CURRENCIES VALUES ('ILS', 'n. szekel', 1.27);
 INSERT INTO CURRENCIES VALUES ('CLP', 'peso', 0.53);
 INSERT INTO CURRENCIES VALUES ('BRL', 'real brazylijski', 0.85);
 INSERT INTO CURRENCIES VALUES ('INR', 'rupia', 5.32);
-INSERT INTO CURRENCIES VALUES ('KRW', 'won (Korea P�d.)', 0.35);
+INSERT INTO CURRENCIES VALUES ('KRW', 'won (Korea Płd.)', 0.35);
 INSERT INTO CURRENCIES VALUES ('CNY', 'yuan renminbi', 0.65);
 
 --INSERT INTO ACCOUNT_CURRENCIES

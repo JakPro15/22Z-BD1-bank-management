@@ -1,15 +1,48 @@
 import java.io.*;
 import java.sql.*;
-import java.util.Random;
 import java.util.Scanner;
+import java.io.FileInputStream;
+import java.util.Properties;
+
+import oracle.jdbc.pool.OracleDataSource;
 
 
 public class App {
-    Connection conn; // obiekt Connection do nawiazania polaczenia z baza danych
+    Connection connection;
+    Scanner stdin;
+
+    public void connect() throws SQLException, IOException {
+        Properties prop = new Properties();
+        FileInputStream in = new FileInputStream("connection.properties");
+        prop.load(in);
+        in.close();
+
+        String host = prop.getProperty("jdbc.host");
+        String username = prop.getProperty("jdbc.username");
+        String password = prop.getProperty("jdbc.password");
+        String port = prop.getProperty("jdbc.port");
+        String serviceName = prop.getProperty("jdbc.service.name");
+
+        String connectionString = String.format(
+            "jdbc:oracle:thin:%s/%s@//%s:%s/%s",
+            username, password, host, port, serviceName
+        );
+
+        OracleDataSource ods;
+        ods = new OracleDataSource();
+
+        ods.setURL(connectionString);
+        connection = ods.getConnection();
+    }
+
+    public void closeConnection() throws SQLException {
+        connection.close();
+    }
 
     public static void main(String[] args) {
+        App app = new App();
         try {
-            Connector.connect();
+            app.connect();
         }
         catch (SQLException e) {
             System.err.println("Wyjątek SQL: " + e.getMessage());
@@ -18,7 +51,7 @@ public class App {
             System.err.println("Błąd: nie można otworzyć pliku connection.properties" );
         }
 
-        Scanner sc = new Scanner(System.in);
+        app.stdin = new Scanner(System.in);
         System.out.println("Witaj w aplikacji obługującej bazę danych banku, " +
                            "projektu z BD1 zespołu 88 (Jakub Proboszcz i Kamil Michalak).");
         String answer = new String();
@@ -37,16 +70,77 @@ public class App {
             System.out.println("11 aby założyć lokatę;");
             System.out.println("q aby zakończyć program.");
             System.out.print("Twój wybór: ");
-            answer = sc.nextLine();
+            answer = app.stdin.nextLine();
+            if(answer.equals("q")) {
+                break;
+            }
+            try {
+                int choice = Integer.valueOf(answer);
+                switch(choice) {
+                    case 1:
+                        app.showClients();
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                    case 10:
+                        break;
+                    case 11:
+                        break;
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+            }
+            catch(NumberFormatException e) {
+                System.out.println("Invalid choice.");
+            }
         }
-        sc.close();
+        app.stdin.close();
 
         try {
-            Connector.closeConnection();
+            app.closeConnection();
         }
         catch (SQLException e) {
             System.err.println("Wyjątek SQL: " + e.getMessage());
         }
+    }
+
+    public void showClients() {
+        System.out.println("Lista klientów:");
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(
+                "SELECT * FROM CLIENTS ORDER BY client_id"
+            );
+
+            System.out.println("---------------------------------");
+            System.out.println("Imię Nazwisko PESEL Płeć Numer telefonu Adres email");
+            while (rs.next())
+                System.out.println(rs.getString(1) + " " + rs.getString(2) + " " +
+                                   rs.getString(3) + " " + rs.getString(4) + " " +
+                                   rs.getString(5) + " " + rs.getString(6));
+            System.out.println("---------------------------------");
+
+            rs.close();
+            statement.close();
+        }
+        catch(SQLException e) {
+            System.err.println("Wyjątek SQL: " + e.getMessage());
+        }
+        stdin.nextLine();
     }
 
     // public void showEmployees() throws SQLException {
