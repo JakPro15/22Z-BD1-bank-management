@@ -6,12 +6,12 @@ INSERT INTO CLIENTS VALUES (NULL, 'Beata', 'Mazur', '80020112345', 'K', '5215846
 INSERT INTO CLIENTS VALUES (NULL, 'Kamil', 'Kowalski', '83010112345', 'M', '567890123', 'kamil.kowalski@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Agnieszka', 'Kwiatkowska', '85010112345', 'K', '321012958', 'agnieszka.kwiatkowska@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Tomasz', 'Nowakowski', '86030112345', 'M', '102222948', 'tomasz.nowakowski@gmail.com');
-INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jabłońska', '90020112345', 'K', '498102924', 'ewa.jab�o�ska@gmail.com');
+INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jabłońska', '90020112345', 'K', '498102924', 'ewa.jablonska123@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Marek', 'Kowalczyk', '91010112345', 'M', '142148092', 'marek.kowalczyk@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Krzysztof', 'Rutkowski', '80010705856', 'M', '909484101', 'krzysztof.rutkowski@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Agnieszka', 'Kwiatkowska', '65031012345', 'K', '112112112', 'agnieszka.kwiatkowska@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Tomasz', 'Nowakowski', '70012054321', 'M', '997997997', 'tomasz.nowakowski@gmail.com');
-INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jabłońska', '80011012345', 'K', '213721150', 'ewa.jab�o�ska@gmail.com');
+INSERT INTO CLIENTS VALUES (NULL, 'Ewa', 'Jabłońska', '80011012345', 'K', '213721150', 'ewa.jablonska456@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Marek', 'Kowalczyk', '84050123456', 'M', '420213700', 'marek.kowalczyk@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Dorota', 'Wieczorek', '83120567890', 'K', '666000666', 'dorota.wieczorek@gmail.com');
 INSERT INTO CLIENTS VALUES (NULL, 'Grzegorz', 'Bąk', '95121567890', 'M', '141252292', 'grzegorz.bak@gmail.com');

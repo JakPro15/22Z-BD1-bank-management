@@ -174,13 +174,13 @@ public class App {
         rs = preparedStatement.executeQuery();
 
         System.out.println("---------------------------------");
-        System.out.printf("%2s %26s %8s %s %s %5s %10s\n", "ID", "Numer konta", "Typ",
+        System.out.printf("%2s %26s %8s %15s %15s %5s %10s\n", "ID", "Numer konta", "Typ",
                           "Data utworzenia", "Data zamknięcia", "Limit", "Saldo");
         while (rs.next()) {
-            System.out.printf("%2s %26s %8s %s %s %5s %s\n", rs.getString(2), rs.getString(3), rs.getString(4),
-                              new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(5)),
-                              new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(6)),
-                              rs.getString(7), rs.getString(8) + " " + rs.getString(9));
+            System.out.printf("%2s %26s %8s %15s %15s %5s %10s\n", rs.getString(2), rs.getString(3), rs.getString(4),
+                              rs.getDate(5) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(5)) : "Brak",
+                              rs.getDate(6) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(6)) : "Brak",
+                              rs.getString(7), rs.getString("balance") + " " + rs.getString("currency_short_name"));
         }
         System.out.println("---------------------------------");
 
