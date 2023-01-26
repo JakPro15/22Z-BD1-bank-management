@@ -60,15 +60,14 @@ public class App {
             System.out.println("Wybierz, którą funkcję aplikacji wykonać. Wpisz:");
             System.out.println("1 aby wyświetlić listę klientów;");
             System.out.println("2 aby wyświetlić dane kont danego klienta;");
-            System.out.println("3 aby wyświetlić bilansy wszystkich kont danego klienta;");
-            System.out.println("4 aby wyświetlić listę pożyczek danego konta;");
-            System.out.println("5 aby wyświetlić listę lokat danego konta;");
-            System.out.println("6 aby wyświetlić historię transakcji danego klienta;");
-            System.out.println("7 aby wyświetlić kursy walut;");
-            System.out.println("8 aby zmienić kurs wybranej waluty;");
-            System.out.println("9 aby wykonać przelew;");
-            System.out.println("10 aby wziąć pożyczkę;");
-            System.out.println("11 aby założyć lokatę;");
+            System.out.println("3 aby wyświetlić listę pożyczek danego konta;");
+            System.out.println("4 aby wyświetlić listę lokat danego konta;");
+            System.out.println("5 aby wyświetlić historię transakcji danego klienta;");
+            System.out.println("6 aby wyświetlić kursy walut;");
+            System.out.println("7 aby zmienić kurs wybranej waluty;");
+            System.out.println("8 aby wykonać przelew;");
+            System.out.println("9 aby wziąć pożyczkę;");
+            System.out.println("10 aby założyć lokatę;");
             System.out.println("q aby zakończyć program.");
             System.out.print("Twój wybór: ");
             answer = app.stdin.nextLine();
@@ -85,12 +84,12 @@ public class App {
                         app.showAccountData();
                         break;
                     case 3:
-                        break;
-                    case 4:
                         app.showLoanData();
                         break;
-                    case 5:
+                    case 4:
                         app.showInvestmentData();
+                        break;
+                    case 5:
                         break;
                     case 6:
                         break;
@@ -101,8 +100,6 @@ public class App {
                     case 9:
                         break;
                     case 10:
-                        break;
-                    case 11:
                         break;
                     default:
                         System.out.println("Invalid choice.");
@@ -165,7 +162,8 @@ public class App {
         System.out.printf("Klient %s %s posiada następujące konta:\n", rs.getString(1), rs.getString(2));
 
         preparedStatement = connection.prepareStatement(
-            "SELECT * " +
+            "SELECT account_id, account_number, type, creation_date, closing_date, " +
+                   "transaction_limit, balance, currency_short_name " +
             "FROM CLIENTS_ACCOUNTS " +
             "INNER JOIN ACCOUNTS USING(account_id) " +
             "INNER JOIN ACCOUNT_CURRENCIES USING(account_id) " +
@@ -176,13 +174,13 @@ public class App {
         rs = preparedStatement.executeQuery();
 
         System.out.println("---------------------------------");
-        System.out.printf("%2s %27s %9s %16s %16s %6s %11s\n", "ID", "Numer_konta", "Typ",
-                          "Data_utworzenia", "Data_zamknięcia", "Limit", "Saldo");
+        System.out.printf("%8s %26s %8s %15s %15s %8s %10s\n", "ID konta", "Numer konta", "Typ",
+                          "Data utworzenia", "Data zamknięcia", "Limit", "Saldo");
         while (rs.next()) {
-            System.out.printf("%2s %27s %9s %16s %16s %6s %11s\n", rs.getString(1), rs.getString(3), rs.getString(4),
+            System.out.printf("%8s %26s %8s %15s %15s %8s %10s\n", rs.getString(1), rs.getString(2), rs.getString(3),
+                              rs.getDate(4) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(4)) : "Brak",
                               rs.getDate(5) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(5)) : "Brak",
-                              rs.getDate(6) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(6)) : "Brak",
-                              rs.getString(7), rs.getString("balance") + " " + rs.getString("currency_short_name"));
+                              rs.getString(6) != null ? rs.getString(6) : "Brak", rs.getString(7) + " " + rs.getString(8));
         }
         System.out.println("---------------------------------");
 
@@ -196,7 +194,10 @@ public class App {
         System.out.println("Podaj ID konta, którego pożyczki chcesz wyświetlić:");
 
         PreparedStatement preparedStatement = connection.prepareStatement(
-            "SELECT account_id FROM ACCOUNT_CURRENCIES WHERE account_id = ?"
+            "SELECT account_id, account_number " +
+            "FROM ACCOUNT_CURRENCIES " +
+            "INNER JOIN ACCOUNTS USING(account_id)" +
+            "WHERE account_id = ?"
         );
         String accountId = stdin.nextLine();
         preparedStatement.setString(1, accountId);
@@ -206,10 +207,10 @@ public class App {
             System.out.println("To nie jest ID istniejącego konta!");
             return;
         }
-        System.out.printf("Konto o id %s brało następujące pożyczki:\n", rs.getString(1));
+        System.out.printf("Konto o id %s i numerze %s brało następujące pożyczki:\n", rs.getString(1), rs.getString(2));
 
         preparedStatement = connection.prepareStatement(
-            "SELECT loan_id, starting_amount, current_amount, date_taken, date_due, yearly_interest_rate " +
+            "SELECT loan_id, starting_amount, current_amount, currency_short_name, date_taken, date_due, yearly_interest_rate " +
             "FROM LOANS " +
             "INNER JOIN ACCOUNT_CURRENCIES USING(account_currency_id) " +
             "WHERE account_id = ? " +
@@ -219,13 +220,14 @@ public class App {
         rs = preparedStatement.executeQuery();
 
         System.out.println("---------------------------------");
-        System.out.printf("%2s %17s %10s %13s %14s %17s\n", "ID", "Kwota_początkowa", "Do_splaty",
-                          "Data_wzięcia", "Termin_spłaty", "Stopa_procentowa");
+        System.out.printf("%2s %16s %10s %12s %13s %7s\n", "ID", "Kwota początkowa", "Do spłaty",
+                          "Data wzięcia", "Termin spłaty", "Odsetki");
         while (rs.next()) {
-            System.out.printf("%2s %17s %10s %13s %14s %17s\n", rs.getString(1), rs.getString(2), rs.getString(3),
-                              rs.getDate(4) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(4)) : "Brak",
+            System.out.printf("%2s %16s %10s %12s %13s %7s\n", rs.getString(1), rs.getString(2) + " " + rs.getString(4),
+                              rs.getString(3) + " " + rs.getString(4),
                               rs.getDate(5) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(5)) : "Brak",
-                              rs.getString(6));
+                              rs.getDate(6) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(6)) : "Brak",
+                              rs.getString(7));
         }
         System.out.println("---------------------------------");
 
@@ -236,10 +238,13 @@ public class App {
     }
 
     public void showInvestmentData() throws SQLException {
-        System.out.println("Podaj ID konta, którego inwestycje chcesz wyświetlić:");
+        System.out.println("Podaj ID konta, którego lokaty chcesz wyświetlić:");
 
         PreparedStatement preparedStatement = connection.prepareStatement(
-            "SELECT account_id FROM ACCOUNT_CURRENCIES WHERE account_id = ?"
+            "SELECT account_id, account_number " +
+            "FROM ACCOUNT_CURRENCIES " +
+            "INNER JOIN ACCOUNTS USING(account_id)" +
+            "WHERE account_id = ?"
         );
         String accountId = stdin.nextLine();
         preparedStatement.setString(1, accountId);
@@ -249,10 +254,10 @@ public class App {
             System.out.println("To nie jest ID istniejącego konta!");
             return;
         }
-        System.out.printf("Konto o id %s posiadało następujące lokaty:\n", rs.getString(1));
+        System.out.printf("Konto o id %s i numerze %s posiadało następujące lokaty:\n", rs.getString(1), rs.getString(2));
 
         preparedStatement = connection.prepareStatement(
-            "SELECT investment_id, date_taken, date_ended, blocked_until, yearly_interest_rate, amount " +
+            "SELECT investment_id, date_taken, date_ended, blocked_until, yearly_interest_rate, amount, currency_short_name " +
             "FROM INVESTMENTS " +
             "INNER JOIN ACCOUNT_CURRENCIES USING(account_currency_id) " +
             "WHERE account_id = ? " +
@@ -262,14 +267,14 @@ public class App {
         rs = preparedStatement.executeQuery();
 
         System.out.println("---------------------------------");
-        System.out.printf("%2s %16s %17s %19s %17s %6s\n", "ID", "Data_utworzenia", "Data_zakończenia",
-                          "Data_końca_blokady", "Stopa_procentowa", "Kwota");
+        System.out.printf("%2s %15s %16s %18s %14s %10s\n", "ID", "Data utworzenia", "Data zakończenia",
+                          "Data końca blokady", "Oprocentowanie", "Kwota");
         while (rs.next()) {
-            System.out.printf("%2s %16s %17s %19s %17s %6s\n", rs.getString(1),
+            System.out.printf("%2s %15s %16s %18s %14s %10s\n", rs.getString(1),
                               rs.getDate(2) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(2)) : "Brak",
                               rs.getDate(3) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(3)) : "Brak",
                               rs.getDate(4) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(4)) : "Brak",
-                              rs.getString(5), rs.getString(6));
+                              rs.getString(5), rs.getString(6) + " " + rs.getString(7));
         }
         System.out.println("---------------------------------");
 
