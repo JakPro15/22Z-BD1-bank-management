@@ -1,5 +1,6 @@
 import java.io.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.util.Properties;
@@ -58,7 +59,7 @@ public class App {
         while(!answer.equals("q")) {
             System.out.println("Wybierz, którą funkcję aplikacji wykonać. Wpisz:");
             System.out.println("1 aby wyświetlić listę klientów;");
-            System.out.println("2 aby wyświetlić dane, ogólne saldo i listę kont danego klienta;");
+            System.out.println("2 aby wyświetlić dane kont danego klienta;");
             System.out.println("3 aby wyświetlić bilansy wszystkich kont danego klienta;");
             System.out.println("4 aby wyświetlić listę pożyczek danego konta;");
             System.out.println("5 aby wyświetlić listę lokat danego konta;");
@@ -81,6 +82,7 @@ public class App {
                         app.showClients();
                         break;
                     case 2:
+                        app.showAccountData();
                         break;
                     case 3:
                         break;
@@ -107,6 +109,9 @@ public class App {
             catch(NumberFormatException e) {
                 System.out.println("Invalid choice.");
             }
+            catch(SQLException e) {
+                System.err.println("Wyjątek SQL: " + e.getMessage());
+            }
         }
         app.stdin.close();
 
@@ -118,28 +123,70 @@ public class App {
         }
     }
 
-    public void showClients() {
+    public void showClients() throws SQLException {
         System.out.println("Lista klientów:");
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(
-                "SELECT * FROM CLIENTS ORDER BY client_id"
-            );
 
-            System.out.println("---------------------------------");
-            System.out.println("Imię Nazwisko PESEL Płeć Numer telefonu Adres email");
-            while (rs.next())
-                System.out.println(rs.getString(1) + " " + rs.getString(2) + " " +
-                                   rs.getString(3) + " " + rs.getString(4) + " " +
-                                   rs.getString(5) + " " + rs.getString(6));
-            System.out.println("---------------------------------");
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(
+            "SELECT CLIENTS.*, calculate_total_balance(client_id) FROM CLIENTS ORDER BY client_id"
+        );
 
-            rs.close();
-            statement.close();
+        System.out.println("---------------------------------");
+        System.out.printf("%2s %10s %12s %11s %4s %14s %31s %16s\n", "ID", "Imię", "Nazwisko", "PESEL", "Płeć",
+                            "Numer telefonu", "Adres email", "Sumaryczne saldo");
+        while (rs.next()) {
+            System.out.printf("%2s %10s %12s %11s %4s %14s %31s %13s zł\n", rs.getString(1), rs.getString(2), rs.getString(3),
+                                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
         }
-        catch(SQLException e) {
-            System.err.println("Wyjątek SQL: " + e.getMessage());
+        System.out.println("---------------------------------");
+
+        rs.close();
+        statement.close();
+
+        stdin.nextLine();
+    }
+
+    public void showAccountData() throws SQLException {
+        System.out.println("Podaj ID klienta, którego konta chcesz wyświetlić:");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+            "SELECT name, surname FROM CLIENTS WHERE client_id = ?"
+        );
+        String clientId = stdin.nextLine();
+        preparedStatement.setString(1, clientId);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if(!rs.next()) {
+            System.out.println("To nie jest ID istniejącego klienta!");
+            return;
         }
+        System.out.printf("Klient %s %s posiada następujące konta:\n", rs.getString(1), rs.getString(2));
+
+        preparedStatement = connection.prepareStatement(
+            "SELECT * " +
+            "FROM CLIENTS_ACCOUNTS " +
+            "INNER JOIN ACCOUNTS USING(account_id) " +
+            "INNER JOIN ACCOUNT_CURRENCIES USING(account_id) " +
+            "WHERE client_id = ? " +
+            "ORDER BY account_id"
+        );
+        preparedStatement.setString(1, clientId);
+        rs = preparedStatement.executeQuery();
+
+        System.out.println("---------------------------------");
+        System.out.printf("%2s %26s %8s %s %s %5s %10s\n", "ID", "Numer konta", "Typ",
+                          "Data utworzenia", "Data zamknięcia", "Limit", "Saldo");
+        while (rs.next()) {
+            System.out.printf("%2s %26s %8s %s %s %5s %s\n", rs.getString(2), rs.getString(3), rs.getString(4),
+                              new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(5)),
+                              new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(6)),
+                              rs.getString(7), rs.getString(8) + " " + rs.getString(9));
+        }
+        System.out.println("---------------------------------");
+
+        rs.close();
+        preparedStatement.close();
+
         stdin.nextLine();
     }
 
