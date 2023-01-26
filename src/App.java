@@ -34,6 +34,7 @@ public class App {
 
         ods.setURL(connectionString);
         connection = ods.getConnection();
+        connection.setAutoCommit(false);
     }
 
     public void closeConnection() throws SQLException {
@@ -65,9 +66,8 @@ public class App {
             System.out.println("5 aby wyświetlić historię transakcji danego klienta;");
             System.out.println("6 aby wyświetlić kursy walut;");
             System.out.println("7 aby zmienić kurs wybranej waluty;");
-            System.out.println("8 aby wykonać przelew;");
-            System.out.println("9 aby wziąć pożyczkę;");
-            System.out.println("10 aby założyć lokatę;");
+            System.out.println("8 aby wziąć pożyczkę;");
+            System.out.println("9 aby założyć lokatę;");
             System.out.println("q aby zakończyć program.");
             System.out.print("Twój wybór: ");
             answer = app.stdin.nextLine();
@@ -90,6 +90,7 @@ public class App {
                         app.showInvestmentData();
                         break;
                     case 5:
+                        app.showTransactionHistory();
                         break;
                     case 6:
                         break;
@@ -99,14 +100,12 @@ public class App {
                         break;
                     case 9:
                         break;
-                    case 10:
-                        break;
                     default:
-                        System.out.println("Invalid choice.");
+                        System.out.println("Niewłaściwy wybór.");
                 }
             }
             catch(NumberFormatException e) {
-                System.out.println("Invalid choice.");
+                System.out.println("Niewłaściwy wybór.");
             }
             catch(SQLException e) {
                 System.err.println("Wyjątek SQL: " + e.getMessage());
@@ -134,7 +133,7 @@ public class App {
         System.out.printf("%2s %11s %13s %12s %5s %15s %32s %17s\n", "ID", "Imię", "Nazwisko", "PESEL", "Płeć",
                             "Numer_telefonu", "Adres_email", "Sumaryczne_saldo");
         while (rs.next()) {
-            System.out.printf("%2s %11s %13s %12s %5s %15s %32s %14s zł\n", rs.getString(1), rs.getString(2), rs.getString(3),
+            System.out.printf("%2s %11s %13s %12s %5s %15s %32s %14s PLN\n", rs.getString(1), rs.getString(2), rs.getString(3),
                                 rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
         }
         System.out.println("---------------------------------");
@@ -283,6 +282,125 @@ public class App {
 
         stdin.nextLine();
     }
+
+    public void showTransactionHistory() throws SQLException {
+        System.out.println("Podaj ID klienta, którego transakcje chcesz wyświetlić:");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+            "SELECT name, surname FROM CLIENTS WHERE client_id = ?"
+        );
+        String clientId = stdin.nextLine();
+        preparedStatement.setString(1, clientId);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if(!rs.next()) {
+            System.out.println("To nie jest ID istniejącego klienta!");
+            return;
+        }
+        System.out.printf("Klient %s %s uczestniczył w następujących transakcjach:\n", rs.getString(1), rs.getString(2));
+
+        // large SQL query reused from testing
+        preparedStatement = connection.prepareStatement(
+            "(SELECT own_a.account_number AS client_account_number, other_a.account_number AS other_account_number, " +
+                   "transaction_date, -amount_before AS amount_received, own_ac.currency_short_name AS currency " +
+            "FROM INSIDE_TRANSACTIONS_HISTORY it " +
+            "INNER JOIN ACCOUNT_CURRENCIES own_ac ON it.account_currency_from_id = own_ac.account_currency_id " +
+            "INNER JOIN ACCOUNTS own_a ON own_ac.account_id = own_a.account_id " +
+            "INNER JOIN CLIENTS_ACCOUNTS ca ON ca.account_id = own_a.account_id " +
+            "INNER JOIN ACCOUNT_CURRENCIES other_ac ON it.account_currency_to_id = other_ac.account_currency_id " +
+            "INNER JOIN ACCOUNTS other_a ON other_ac.account_id = other_a.account_id " +
+            "WHERE client_id = ? " +
+            "UNION " +
+            "SELECT own_a.account_number AS client_account_number, other_a.account_number AS other_account_number, " +
+                   "transaction_date, amount_after AS amount_received, own_ac.currency_short_name AS currency " +
+            "FROM INSIDE_TRANSACTIONS_HISTORY it " +
+            "INNER JOIN ACCOUNT_CURRENCIES own_ac ON it.account_currency_to_id = own_ac.account_currency_id " +
+            "INNER JOIN ACCOUNTS own_a ON own_ac.account_id = own_a.account_id " +
+            "INNER JOIN CLIENTS_ACCOUNTS ca ON ca.account_id = own_a.account_id " +
+            "INNER JOIN ACCOUNT_CURRENCIES other_ac ON it.account_currency_from_id = other_ac.account_currency_id " +
+            "INNER JOIN ACCOUNTS other_a ON other_ac.account_id = other_a.account_id " +
+            "WHERE client_id = ? " +
+            "UNION " +
+            "SELECT account_number AS client_account_number, ot.outside_account_number AS other_account_number, " +
+                   "transaction_date, amount AS amount_received, ac.currency_short_name AS currency " +
+            "FROM OUTSIDE_TRANSACTIONS_HISTORY ot " +
+            "INNER JOIN ACCOUNT_CURRENCIES ac ON ot.inside_account_currency_id = ac.account_currency_id " +
+            "INNER JOIN ACCOUNTS USING(account_id) " +
+            "INNER JOIN CLIENTS_ACCOUNTS USING(account_id) " +
+            "WHERE client_id = ?) " +
+            "ORDER BY transaction_date"
+        );
+        preparedStatement.setString(1, clientId);
+        preparedStatement.setString(2, clientId);
+        preparedStatement.setString(3, clientId);
+        rs = preparedStatement.executeQuery();
+
+        System.out.println("---------------------------------");
+        System.out.printf("%26s %31s %15s %15s\n", "Numer konta tego klienta",
+                          "Numer innego konta z transakcji", "Data transakcji", "Otrzymana kwota");
+        while (rs.next()) {
+            System.out.printf("%26s %31s %15s %15s\n", rs.getString(1), rs.getString(2),
+                              new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(3)),
+                              rs.getString(4) + " " + rs.getString(5));
+        }
+        System.out.println("---------------------------------");
+        System.out.println("Ujemna otrzymana kwota oznacza, że przelew był wychodzący.");
+
+        rs.close();
+        preparedStatement.close();
+
+        stdin.nextLine();
+    }
+
+    // public void doTransaction() throws SQLException {
+    //     System.out.print("Podaj ID konta wysyłającego przelew: ");
+    //     String accountId = stdin.nextLine();
+    //     System.out.print("Podaj skrót waluty (np. PLN), w której przelew ma być wykonany: ");
+    //     String currency = stdin.nextLine();
+    //     System.out.print("Podaj numer konta docelowego: ");
+    //     String targetNumber = stdin.nextLine();
+
+    //     PreparedStatement preparedStatement = connection.prepareStatement(
+    //         "SELECT account_id FROM ACCOUNTS WHERE account_number = ?"
+    //     );
+    //     preparedStatement.setString(1, targetNumber);
+    //     ResultSet targetResultSet = preparedStatement.executeQuery();
+    //     boolean inside = targetResultSet.next();
+
+    //     System.out.print("Podaj, ile pieniędzy ma być przesłane: ");
+    //     String amount = stdin.nextLine();
+
+    //     try {
+    //         PreparedStatement statement;
+    //         if(inside) {
+    //             statement = connection.prepareStatement("CALL make_inside_transaction(?, ?, ?, ?, ?)");
+    //             statement.setString(1, amount);
+    //             statement.setString(2, accountId);
+    //             statement.setString(3, targetResultSet.getString(1));
+    //             statement.setString(4, currency);
+    //             statement.setString(5, currency);
+    //             statement.executeUpdate();
+    //         }
+    //         else {
+    //             statement = connection.prepareStatement("CALL make_outside_transaction(?, ?, ?, ?)");
+    //             statement.setString(1, targetNumber);
+    //             statement.setString(2, "-" + amount);
+    //             statement.setString(3, accountId);
+    //             statement.setString(4, currency);
+    //             statement.executeUpdate();
+    //         }
+    //         while(statement.getMoreResults());
+    //         connection.commit();
+    //         statement.close();
+
+    //         System.out.println("Transakcja zaksięgowana.");
+    //     }
+    //     catch (SQLException e) {
+    //         System.out.println("Wyjątek SQL: " + e.getMessage());
+    //         connection.rollback();
+    //         System.out.println("Transakcja wycofana.");
+    //     }
+    // }
 
     // public void showEmployees() throws SQLException {
     //     System.out.println("Lista pracowników:");
