@@ -87,8 +87,10 @@ public class App {
                     case 3:
                         break;
                     case 4:
+                        app.showLoanData();
                         break;
                     case 5:
+                        app.showInvestmentData();
                         break;
                     case 6:
                         break;
@@ -132,10 +134,10 @@ public class App {
         );
 
         System.out.println("---------------------------------");
-        System.out.printf("%2s %10s %12s %11s %4s %14s %31s %16s\n", "ID", "Imię", "Nazwisko", "PESEL", "Płeć",
-                            "Numer telefonu", "Adres email", "Sumaryczne saldo");
+        System.out.printf("%2s %11s %13s %12s %5s %15s %32s %17s\n", "ID", "Imię", "Nazwisko", "PESEL", "Płeć",
+                            "Numer_telefonu", "Adres_email", "Sumaryczne_saldo");
         while (rs.next()) {
-            System.out.printf("%2s %10s %12s %11s %4s %14s %31s %13s zł\n", rs.getString(1), rs.getString(2), rs.getString(3),
+            System.out.printf("%2s %11s %13s %12s %5s %15s %32s %14s zł\n", rs.getString(1), rs.getString(2), rs.getString(3),
                                 rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
         }
         System.out.println("---------------------------------");
@@ -174,13 +176,100 @@ public class App {
         rs = preparedStatement.executeQuery();
 
         System.out.println("---------------------------------");
-        System.out.printf("%2s %26s %8s %15s %15s %5s %10s\n", "ID", "Numer konta", "Typ",
-                          "Data utworzenia", "Data zamknięcia", "Limit", "Saldo");
+        System.out.printf("%2s %27s %9s %16s %16s %6s %11s\n", "ID", "Numer_konta", "Typ",
+                          "Data_utworzenia", "Data_zamknięcia", "Limit", "Saldo");
         while (rs.next()) {
-            System.out.printf("%2s %26s %8s %15s %15s %5s %10s\n", rs.getString(2), rs.getString(3), rs.getString(4),
+            System.out.printf("%2s %27s %9s %16s %16s %6s %11s\n", rs.getString(1), rs.getString(3), rs.getString(4),
                               rs.getDate(5) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(5)) : "Brak",
                               rs.getDate(6) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(6)) : "Brak",
                               rs.getString(7), rs.getString("balance") + " " + rs.getString("currency_short_name"));
+        }
+        System.out.println("---------------------------------");
+
+        rs.close();
+        preparedStatement.close();
+
+        stdin.nextLine();
+    }
+
+    public void showLoanData() throws SQLException {
+        System.out.println("Podaj ID konta, którego pożyczki chcesz wyświetlić:");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+            "SELECT account_id FROM ACCOUNT_CURRENCIES WHERE account_id = ?"
+        );
+        String accountId = stdin.nextLine();
+        preparedStatement.setString(1, accountId);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if(!rs.next()) {
+            System.out.println("To nie jest ID istniejącego konta!");
+            return;
+        }
+        System.out.printf("Konto o id %s brało następujące pożyczki:\n", rs.getString(1));
+
+        preparedStatement = connection.prepareStatement(
+            "SELECT loan_id, starting_amount, current_amount, date_taken, date_due, yearly_interest_rate " +
+            "FROM LOANS " +
+            "INNER JOIN ACCOUNT_CURRENCIES USING(account_currency_id) " +
+            "WHERE account_id = ? " +
+            "ORDER BY loan_id"
+        );
+        preparedStatement.setString(1, accountId);
+        rs = preparedStatement.executeQuery();
+
+        System.out.println("---------------------------------");
+        System.out.printf("%2s %17s %10s %13s %14s %17s\n", "ID", "Kwota_początkowa", "Do_splaty",
+                          "Data_wzięcia", "Termin_spłaty", "Stopa_procentowa");
+        while (rs.next()) {
+            System.out.printf("%2s %17s %10s %13s %14s %17s\n", rs.getString(1), rs.getString(2), rs.getString(3),
+                              rs.getDate(4) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(4)) : "Brak",
+                              rs.getDate(5) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(5)) : "Brak",
+                              rs.getString(6));
+        }
+        System.out.println("---------------------------------");
+
+        rs.close();
+        preparedStatement.close();
+
+        stdin.nextLine();
+    }
+
+    public void showInvestmentData() throws SQLException {
+        System.out.println("Podaj ID konta, którego inwestycje chcesz wyświetlić:");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+            "SELECT account_id FROM ACCOUNT_CURRENCIES WHERE account_id = ?"
+        );
+        String accountId = stdin.nextLine();
+        preparedStatement.setString(1, accountId);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if(!rs.next()) {
+            System.out.println("To nie jest ID istniejącego konta!");
+            return;
+        }
+        System.out.printf("Konto o id %s posiadało następujące lokaty:\n", rs.getString(1));
+
+        preparedStatement = connection.prepareStatement(
+            "SELECT investment_id, date_taken, date_ended, blocked_until, yearly_interest_rate, amount " +
+            "FROM INVESTMENTS " +
+            "INNER JOIN ACCOUNT_CURRENCIES USING(account_currency_id) " +
+            "WHERE account_id = ? " +
+            "ORDER BY investment_id"
+        );
+        preparedStatement.setString(1, accountId);
+        rs = preparedStatement.executeQuery();
+
+        System.out.println("---------------------------------");
+        System.out.printf("%2s %16s %17s %19s %17s %6s\n", "ID", "Data_utworzenia", "Data_zakończenia",
+                          "Data_końca_blokady", "Stopa_procentowa", "Kwota");
+        while (rs.next()) {
+            System.out.printf("%2s %16s %17s %19s %17s %6s\n", rs.getString(1),
+                              rs.getDate(2) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(2)) : "Brak",
+                              rs.getDate(3) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(3)) : "Brak",
+                              rs.getDate(4) != null ? new SimpleDateFormat("dd.MM.yyyy").format(rs.getDate(4)) : "Brak",
+                              rs.getString(5), rs.getString(6));
         }
         System.out.println("---------------------------------");
 
