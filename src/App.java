@@ -372,8 +372,8 @@ public class App {
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT full_name FROM CURRENCIES WHERE short_name = ?"
         );
-        String fullName = stdin.nextLine();
-        preparedStatement.setString(1, fullName);
+        String shortName = stdin.nextLine();
+        preparedStatement.setString(1, shortName);
         ResultSet rs = preparedStatement.executeQuery();
 
         if(!rs.next()) {
@@ -386,11 +386,11 @@ public class App {
         preparedStatement = connection.prepareStatement(
             "UPDATE CURRENCIES " +
             "SET exchange_rate_to_PLN = ? " +
-            "WHERE short_name LIKE ?"
+            "WHERE short_name = ?"
         );
-        Float rate = stdin.nextFloat();
-        preparedStatement.setFloat(1, rate);
-        preparedStatement.setString(2, fullName);
+        String rate = stdin.nextLine();
+        preparedStatement.setString(1, rate);
+        preparedStatement.setString(2, shortName);
         int result = preparedStatement.executeUpdate();
 
         if (result != 1) {
