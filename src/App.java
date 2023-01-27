@@ -414,7 +414,7 @@ public class App {
         System.out.println("Podaj kwotę pożyczki, którą chcesz wziąć:");
         String amount = stdin.nextLine();
 
-        System.out.println("Podaj termin spłaty pożyczki:");
+        System.out.println("Podaj termin spłaty pożyczki (format daty: yyyy-MM-dd):");
         String dateDue = stdin.nextLine();
 
         System.out.println("Podaj procent rocznych odsetek:");
@@ -454,7 +454,7 @@ public class App {
         System.out.println("Podaj kwotę lokaty, jaką chcesz założyć:");
         String amount = stdin.nextLine();
 
-        System.out.println("Podaj termin, do kiedy lokata ma być zablokowana:");
+        System.out.println("Podaj termin, do kiedy lokata ma być zablokowana (format daty: yyyy-MM-dd):");
         String dateBlocked = stdin.nextLine();
 
         System.out.println("Podaj oprocentowanie lokaty:");
