@@ -143,35 +143,27 @@ public class Updates {
         System.out.print("Podaj, ile pieniędzy ma być przesłane: ");
         String amount = stdin.nextLine();
 
-        try {
-            CallableStatement statement;
-            if(inside) {
-                statement = connection.prepareCall("{CALL make_inside_transaction(?, ?, ?, ?, ?)}");
-                statement.setString(1, amount);
-                statement.setString(2, accountId);
-                statement.setString(3, targetResultSet.getString(1));
-                statement.setString(4, currency);
-                statement.setString(5, currency);
-                statement.execute();
-            }
-            else {
-                statement = connection.prepareCall("{CALL make_outside_transaction(?, ?, ?, ?)}");
-                statement.setString(1, targetNumber);
-                statement.setString(2, "-" + amount);
-                statement.setString(3, accountId);
-                statement.setString(4, currency);
-                statement.execute();
-            }
-            while(statement.getMoreResults());
-            connection.commit();
-            statement.close();
+        CallableStatement statement;
+        if(inside) {
+            statement = connection.prepareCall("{CALL make_inside_transaction(?, ?, ?, ?, ?)}");
+            statement.setString(1, amount);
+            statement.setString(2, accountId);
+            statement.setString(3, targetResultSet.getString(1));
+            statement.setString(4, currency);
+            statement.setString(5, currency);
+            statement.execute();
+        }
+        else {
+            statement = connection.prepareCall("{CALL make_outside_transaction(?, ?, ?, ?)}");
+            statement.setString(1, targetNumber);
+            statement.setString(2, "-" + amount);
+            statement.setString(3, accountId);
+            statement.setString(4, currency);
+            statement.execute();
+        }
+        while(statement.getMoreResults());
+        statement.close();
 
-            System.out.println("Transakcja zaksięgowana.");
-        }
-        catch (SQLException e) {
-            System.out.println("Wyjątek SQL: " + e.getMessage());
-            connection.rollback();
-            System.out.println("Transakcja wycofana.");
-        }
+        System.out.println("Transakcja zaksięgowana.");
     }
 }
