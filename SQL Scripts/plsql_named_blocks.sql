@@ -31,7 +31,7 @@ BEGIN
 END;
 /
 
--- Funkcja oblicza ogólny balans w PLN wszystkich kont klienta, wliczając pożyczki i lokaty.
+-- Funkcja oblicza ogólne saldo w PLN wszystkich kont klienta, wliczając pożyczki i lokaty.
 CREATE OR REPLACE FUNCTION calculate_total_balance(p_client_id NUMBER)
 RETURN NUMERIC
 AS
@@ -84,7 +84,7 @@ BEGIN
 END;
 /
 
--- Procedura rejestruje wzięcie pożyczki przez podane konto i dodaje pieniądze do konta
+-- Procedura rejestruje wzięcie pożyczki przez podane konto i dodaje pieniądze do konta.
 CREATE OR REPLACE PROCEDURE take_loan(p_starting_amount NUMERIC, p_date_due DATE,
                                       p_yearly_interest_rate NUMERIC, p_account_id NUMBER,
                                       p_currency_short_name CHAR)
@@ -264,7 +264,8 @@ CREATE OR REPLACE PROCEDURE block_unpaid_accounts
 AS
     v_loan_paid NUMBER;
     v_time_passed NUMBER;
-    CURSOR cr is SELECT * FROM LOANS;
+    CURSOR cr IS (SELECT *
+                  FROM LOANS);
     v_loan LOANS%ROWTYPE;
     v_account_to_block_id NUMBER;
 BEGIN
