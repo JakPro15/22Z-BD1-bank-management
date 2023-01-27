@@ -15,4 +15,5 @@ DROP PROCEDURE make_inside_transaction;
 DROP PROCEDURE make_investment;
 DROP PROCEDURE make_outside_transaction;
 DROP PROCEDURE take_loan;
+DROP SEQUENCE account_numbers_seq;
 PURGE RECYCLEBIN;
