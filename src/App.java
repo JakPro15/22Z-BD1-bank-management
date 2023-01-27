@@ -93,6 +93,7 @@ public class App {
                         app.showTransactionHistory();
                         break;
                     case 6:
+                        app.showExchangeRates();
                         break;
                     case 7:
                         break;
@@ -131,7 +132,7 @@ public class App {
 
         System.out.println("---------------------------------");
         System.out.printf("%2s %11s %13s %12s %5s %15s %32s %17s\n", "ID", "Imię", "Nazwisko", "PESEL", "Płeć",
-                            "Numer_telefonu", "Adres_email", "Sumaryczne_saldo");
+                            "Numer telefonu", "Adres email", "Sumaryczne saldo");
         while (rs.next()) {
             System.out.printf("%2s %11s %13s %12s %5s %15s %32s %14s PLN\n", rs.getString(1), rs.getString(2), rs.getString(3),
                                 rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
@@ -348,6 +349,27 @@ public class App {
 
         rs.close();
         preparedStatement.close();
+
+        stdin.nextLine();
+    }
+
+    public void showExchangeRates() throws SQLException {
+        System.out.println("Kursy walut:");
+
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(
+            "SELECT short_name, full_name, exchange_rate_to_PLN from CURRENCIES"
+        );
+
+        System.out.println("---------------------------------");
+        System.out.printf("%5s %18s %12s\n", "Skrót", "Pełna nazwa", "Kurs na PLN");
+        while (rs.next()) {
+            System.out.printf("%5s %18s %12s\n", rs.getString(1), rs.getString(2), rs.getString(3));
+        }
+        System.out.println("---------------------------------");
+
+        rs.close();
+        statement.close();
 
         stdin.nextLine();
     }
