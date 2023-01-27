@@ -68,6 +68,7 @@ public class App {
             System.out.println("7 aby zmienić kurs wybranej waluty;");
             System.out.println("8 aby wziąć pożyczkę;");
             System.out.println("9 aby założyć lokatę;");
+            System.out.println("10 aby wykonać przelew;");
             System.out.println("q aby zakończyć program.");
             System.out.print("Twój wybór: ");
             answer = app.stdin.nextLine();
@@ -101,6 +102,9 @@ public class App {
                     case 8:
                         break;
                     case 9:
+                        break;
+                    case 10:
+                        app.doTransaction();
                         break;
                     default:
                         System.out.println("Niewłaściwy wybór.");
@@ -372,8 +376,8 @@ public class App {
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT full_name FROM CURRENCIES WHERE short_name = ?"
         );
-        String fullName = stdin.nextLine();
-        preparedStatement.setString(1, fullName);
+        String shortName = stdin.nextLine();
+        preparedStatement.setString(1, shortName);
         ResultSet rs = preparedStatement.executeQuery();
 
         if(!rs.next()) {
@@ -386,11 +390,11 @@ public class App {
         preparedStatement = connection.prepareStatement(
             "UPDATE CURRENCIES " +
             "SET exchange_rate_to_PLN = ? " +
-            "WHERE short_name LIKE ?"
+            "WHERE short_name = ?"
         );
         Float rate = stdin.nextFloat();
         preparedStatement.setFloat(1, rate);
-        preparedStatement.setString(2, fullName);
+        preparedStatement.setString(2, shortName);
         int result = preparedStatement.executeUpdate();
 
         if (result != 1) {
@@ -403,55 +407,55 @@ public class App {
         preparedStatement.close();
     }
 
-    // public void doTransaction() throws SQLException {
-    //     System.out.print("Podaj ID konta wysyłającego przelew: ");
-    //     String accountId = stdin.nextLine();
-    //     System.out.print("Podaj skrót waluty (np. PLN), w której przelew ma być wykonany: ");
-    //     String currency = stdin.nextLine();
-    //     System.out.print("Podaj numer konta docelowego: ");
-    //     String targetNumber = stdin.nextLine();
+    public void doTransaction() throws SQLException {
+        System.out.print("Podaj ID konta wysyłającego przelew: ");
+        String accountId = stdin.nextLine();
+        System.out.print("Podaj skrót waluty (np. PLN), w której przelew ma być wykonany: ");
+        String currency = stdin.nextLine();
+        System.out.print("Podaj numer konta docelowego: ");
+        String targetNumber = stdin.nextLine();
 
-    //     PreparedStatement preparedStatement = connection.prepareStatement(
-    //         "SELECT account_id FROM ACCOUNTS WHERE account_number = ?"
-    //     );
-    //     preparedStatement.setString(1, targetNumber);
-    //     ResultSet targetResultSet = preparedStatement.executeQuery();
-    //     boolean inside = targetResultSet.next();
+        PreparedStatement preparedStatement = connection.prepareStatement(
+            "SELECT account_id FROM ACCOUNTS WHERE account_number = ?"
+        );
+        preparedStatement.setString(1, targetNumber);
+        ResultSet targetResultSet = preparedStatement.executeQuery();
+        boolean inside = targetResultSet.next();
 
-    //     System.out.print("Podaj, ile pieniędzy ma być przesłane: ");
-    //     String amount = stdin.nextLine();
+        System.out.print("Podaj, ile pieniędzy ma być przesłane: ");
+        String amount = stdin.nextLine();
 
-    //     try {
-    //         PreparedStatement statement;
-    //         if(inside) {
-    //             statement = connection.prepareStatement("CALL make_inside_transaction(?, ?, ?, ?, ?)");
-    //             statement.setString(1, amount);
-    //             statement.setString(2, accountId);
-    //             statement.setString(3, targetResultSet.getString(1));
-    //             statement.setString(4, currency);
-    //             statement.setString(5, currency);
-    //             statement.executeUpdate();
-    //         }
-    //         else {
-    //             statement = connection.prepareStatement("CALL make_outside_transaction(?, ?, ?, ?)");
-    //             statement.setString(1, targetNumber);
-    //             statement.setString(2, "-" + amount);
-    //             statement.setString(3, accountId);
-    //             statement.setString(4, currency);
-    //             statement.executeUpdate();
-    //         }
-    //         while(statement.getMoreResults());
-    //         connection.commit();
-    //         statement.close();
+        try {
+            CallableStatement statement;
+            if(inside) {
+                statement = connection.prepareCall("{CALL make_inside_transaction(?, ?, ?, ?, ?)}");
+                statement.setString(1, amount);
+                statement.setString(2, accountId);
+                statement.setString(3, targetResultSet.getString(1));
+                statement.setString(4, currency);
+                statement.setString(5, currency);
+                statement.execute();
+            }
+            else {
+                statement = connection.prepareCall("{CALL make_outside_transaction(?, ?, ?, ?)}");
+                statement.setString(1, targetNumber);
+                statement.setString(2, "-" + amount);
+                statement.setString(3, accountId);
+                statement.setString(4, currency);
+                statement.execute();
+            }
+            while(statement.getMoreResults());
+            connection.commit();
+            statement.close();
 
-    //         System.out.println("Transakcja zaksięgowana.");
-    //     }
-    //     catch (SQLException e) {
-    //         System.out.println("Wyjątek SQL: " + e.getMessage());
-    //         connection.rollback();
-    //         System.out.println("Transakcja wycofana.");
-    //     }
-    // }
+            System.out.println("Transakcja zaksięgowana.");
+        }
+        catch (SQLException e) {
+            System.out.println("Wyjątek SQL: " + e.getMessage());
+            connection.rollback();
+            System.out.println("Transakcja wycofana.");
+        }
+    }
 
     // public void showEmployees() throws SQLException {
     //     System.out.println("Lista pracowników:");
