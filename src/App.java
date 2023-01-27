@@ -96,6 +96,7 @@ public class App {
                         app.showExchangeRates();
                         break;
                     case 7:
+                        app.changeCurrencyExchangeRate();
                         break;
                     case 8:
                         break;
@@ -110,6 +111,9 @@ public class App {
             }
             catch(SQLException e) {
                 System.err.println("Wyjątek SQL: " + e.getMessage());
+            }
+            finally {
+                app.stdin.nextLine();
             }
         }
         app.stdin.close();
@@ -141,8 +145,6 @@ public class App {
 
         rs.close();
         statement.close();
-
-        stdin.nextLine();
     }
 
     public void showAccountData() throws SQLException {
@@ -186,8 +188,6 @@ public class App {
 
         rs.close();
         preparedStatement.close();
-
-        stdin.nextLine();
     }
 
     public void showLoanData() throws SQLException {
@@ -233,8 +233,6 @@ public class App {
 
         rs.close();
         preparedStatement.close();
-
-        stdin.nextLine();
     }
 
     public void showInvestmentData() throws SQLException {
@@ -280,8 +278,6 @@ public class App {
 
         rs.close();
         preparedStatement.close();
-
-        stdin.nextLine();
     }
 
     public void showTransactionHistory() throws SQLException {
@@ -349,8 +345,6 @@ public class App {
 
         rs.close();
         preparedStatement.close();
-
-        stdin.nextLine();
     }
 
     public void showExchangeRates() throws SQLException {
@@ -370,8 +364,43 @@ public class App {
 
         rs.close();
         statement.close();
+    }
 
-        stdin.nextLine();
+    public void changeCurrencyExchangeRate() throws SQLException {
+        System.out.println("Podaj skróconą nazwę waluty, której kurs chcesz zmienić:");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+            "SELECT full_name FROM CURRENCIES WHERE short_name = ?"
+        );
+        String fullName = stdin.nextLine();
+        preparedStatement.setString(1, fullName);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if(!rs.next()) {
+            System.out.println("Waluta o tej nazwie nie istnieje!");
+            return;
+        }
+
+        System.out.printf("Podaj kurs waluty '%s' jaki chcesz ustawić:\n", rs.getString(1));
+
+        preparedStatement = connection.prepareStatement(
+            "UPDATE CURRENCIES " +
+            "SET exchange_rate_to_PLN = ? " +
+            "WHERE short_name LIKE ?"
+        );
+        Float rate = stdin.nextFloat();
+        preparedStatement.setFloat(1, rate);
+        preparedStatement.setString(2, fullName);
+        int result = preparedStatement.executeUpdate();
+
+        if (result != 1) {
+            throw new SQLException();
+        }
+
+        System.out.println("Pomyślnie zmieniono kurs waluty!");
+
+        rs.close();
+        preparedStatement.close();
     }
 
     // public void doTransaction() throws SQLException {
